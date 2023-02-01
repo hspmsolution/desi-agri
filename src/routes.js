@@ -4,11 +4,13 @@ import DashboardLayout from './admin/layouts/dashboard';
 //
 import BlogPage from './admin/pages/BlogPage';
 import UserPage from './admin/pages/UserPage';
-import LoginPage from './admin/pages/LoginPage';
+import Login from './admin/pages/login';
+import Register from './admin/pages/register';
 import Page404 from './admin/pages/Page404';
 import ProductsPage from './admin/pages/ProductsPage';
 import DashboardAppPage from './admin/pages/DashboardAppPage';
 import Homepage from './pages/homepage/Homepage';
+
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +33,11 @@ export default function Router() {
     },
     {
       path: 'login',
-      element: <LoginPage />,
+      element: <Login />,
+    },
+    {
+      path: 'register',
+      element: <Register/>,
     },
     {
       path: '404',
