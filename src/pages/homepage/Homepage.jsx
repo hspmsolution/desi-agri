@@ -4,6 +4,7 @@ import Slider from '../../components/slider/Slider';
 import Marquee from '../../components/marquee/Marquee';
 
 const Homepage = () => {
+   
   return (
     <>
     <Navbar/>
