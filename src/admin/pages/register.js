@@ -22,6 +22,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const message = useSelector((state) => state.auth.message?.info);
   const [disabled, setDisabled] = useState(false);
+  const [isotp, setIsotp] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -29,6 +30,7 @@ const Register = () => {
       lastName: '',
       password: '',
       confirmPassword: '',
+      otp: '',
       policy: false,
     },
     validationSchema: Yup.object({
@@ -37,6 +39,10 @@ const Register = () => {
       lastName: Yup.string().max(255).required('Last name is required'),
       password: Yup.string().max(255).required('Password is required'),
       confirmPassword: Yup.string().max(255).required('confirmPassword is required'),
+      otp: Yup.string().when('condition', {
+        is: isotp,
+        then: Yup.string().max(255).required('otp is required'),
+      }),
       policy: Yup.boolean().oneOf([true], 'This field must be checked'),
     }),
     onSubmit: (data) => {
@@ -50,6 +56,7 @@ const Register = () => {
 
   useEffect(() => {
     if (message) setDisabled(false);
+    if (message === 'OTP Sent on Admin Email') setIsotp(true);
   }, [message]);
 
   return (
@@ -69,7 +76,7 @@ const Register = () => {
         <Container maxWidth="sm">
           <Link to="/">
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
-              Dashboard
+              Home
             </Button>
           </Link>
           <form onSubmit={formik.handleSubmit}>
@@ -92,6 +99,7 @@ const Register = () => {
               onChange={formik.handleChange}
               value={formik.values.firstName}
               variant="outlined"
+              disabled={isotp}
             />
             <TextField
               error={Boolean(formik.touched.lastName && formik.errors.lastName)}
@@ -104,6 +112,7 @@ const Register = () => {
               onChange={formik.handleChange}
               value={formik.values.lastName}
               variant="outlined"
+              disabled={isotp}
             />
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
@@ -117,6 +126,7 @@ const Register = () => {
               type="email"
               value={formik.values.email}
               variant="outlined"
+              disabled={isotp}
             />
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
@@ -130,6 +140,7 @@ const Register = () => {
               type="password"
               value={formik.values.password}
               variant="outlined"
+              disabled={isotp}
             />
             <TextField
               error={Boolean(formik.touched.confirmPassword && formik.errors.confirmPassword)}
@@ -140,10 +151,26 @@ const Register = () => {
               name="confirmPassword"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              type="confirmPassword"
+              type="password"
               value={formik.values.confirmPassword}
               variant="outlined"
+              disabled={isotp}
             />
+            {isotp && (
+              <TextField
+                error={Boolean(formik.touched.otp && formik.errors.otp)}
+                fullWidth
+                helperText={formik.touched.otp && formik.errors.otp}
+                label="otp"
+                margin="normal"
+                name="otp"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="otp"
+                value={formik.values.otp}
+                variant="outlined"
+              />
+            )}
             <Box
               sx={{
                 alignItems: 'center',
@@ -165,14 +192,7 @@ const Register = () => {
               <FormHelperText error>{formik.errors.policy}</FormHelperText>
             )}
             <Box sx={{ py: 2 }}>
-              <Button
-                color="primary"
-                disabled={disabled}
-                fullWidth
-                size="large"
-                type="submit"
-                variant="contained"
-              >
+              <Button color="primary" disabled={disabled} fullWidth size="large" type="submit" variant="contained">
                 Sign Up Now
               </Button>
             </Box>

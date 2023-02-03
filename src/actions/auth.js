@@ -1,4 +1,4 @@
-import { AUTH, FETCH_ALL, CLIENT_MSG } from "../constants/actionTypes";
+import { AUTH,  CLIENT_MSG } from "../constants/actionTypes";
 import * as api from "../api";
 
 export const signin = (formData, navigate) => async (dispatch) => {
@@ -9,7 +9,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
       type: CLIENT_MSG,
       message: { info: data.successMessage, status },
     });
-    navigate("/");
+    navigate("/dashboard");
   } catch (error) {
     dispatch({
       type: CLIENT_MSG,
@@ -31,7 +31,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
     });
     if (data.successMessage === "Account created Successfully") {
       dispatch({ type: AUTH, data });
-      navigate("/");
+      navigate("/login");
     }
   } catch (error) {
     dispatch({
