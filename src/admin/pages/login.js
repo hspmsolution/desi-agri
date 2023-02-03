@@ -7,16 +7,18 @@ import * as Yup from 'yup';
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { signin } from '../../actions/auth';
+import { ADMIN } from '../../constants/actionTypes';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const message = useSelector((state) => state.auth.message?.info);
+  const isAdmin = useSelector((state) => state.auth.admin);
   const [disabled, setDisabled] = useState(false);
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123',
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -30,6 +32,11 @@ const Login = () => {
       setDisabled(true);
     },
   });
+
+  useEffect(() => {
+    dispatch({ type: ADMIN });
+   if(isAdmin)navigate('/dashboard')
+  }, [isAdmin]);
 
   useEffect(() => {
     if (message) setDisabled(false);
@@ -52,7 +59,7 @@ const Login = () => {
         <Container maxWidth="sm">
           <Link to="/">
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
-              Dashboard
+              Home
             </Button>
           </Link>
           <form onSubmit={formik.handleSubmit}>

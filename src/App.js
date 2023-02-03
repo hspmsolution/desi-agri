@@ -1,5 +1,8 @@
+import { useDispatch } from 'react-redux';
+import { ADMIN } from './constants/actionTypes';
 // routes
 import Router from './routes';
+
 // theme
 import ThemeProvider from './admin/theme';
 // components
@@ -10,6 +13,8 @@ import Notify from './admin/utils/Notify';
 // ----------------------------------------------------------------------
 
 export default function App() {
+  const dispatch=useDispatch();
+  dispatch({type:ADMIN})
   return (
     <ThemeProvider>
       <Notify/>
