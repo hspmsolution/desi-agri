@@ -74,18 +74,18 @@ const Register = () => {
         }}
       >
         <Container maxWidth="sm">
-          <Link to="/">
+          <Link to="/dashboard/manage-admin">
             <Button component="a" startIcon={<ArrowBackIcon fontSize="small" />}>
-              Home
+              Back
             </Button>
           </Link>
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
-                Create a new account
+               Add new admin
               </Typography>
               <Typography color="textSecondary" gutterBottom variant="body2">
-                Use your email to create a new account
+                Use unique email to create a new admin
               </Typography>
             </Box>
             <TextField
@@ -193,17 +193,17 @@ const Register = () => {
             )}
             <Box sx={{ py: 2 }}>
               <Button color="primary" disabled={disabled} fullWidth size="large" type="submit" variant="contained">
-                Sign Up Now
+               Add Admin
               </Button>
             </Box>
-            <Typography color="textSecondary" variant="body2">
+            {/* <Typography color="textSecondary" variant="body2">
               Have an account?{' '}
               <Link to="/login">
                 <MuiLink variant="subtitle2" underline="hover">
                   Sign In
                 </MuiLink>
               </Link>
-            </Typography>
+            </Typography> */}
           </form>
         </Container>
       </Box>
