@@ -1,6 +1,6 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // layouts
 import DashboardLayout from './admin/layouts/dashboard';
@@ -12,7 +12,10 @@ import Register from './admin/pages/register';
 import Page404 from './admin/pages/Page404';
 import ProductsPage from './admin/pages/ProductsPage';
 import DashboardAppPage from './admin/pages/DashboardAppPage';
+import ManageAdmin from './admin/pages/ManageAdmin';
 import Homepage from './pages/homepage/Homepage';
+import AddProduct from './admin/pages/AddProduct';
+import LineChart from './admin/pages/LineChart';
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +38,7 @@ export default function Router() {
         element: <Register />,
       },
       {
-        path: '404',
+        path: '/404',
         element: <Page404 />,
       },
       {
@@ -52,6 +55,12 @@ export default function Router() {
                 { path: 'user', element: <UserPage /> },
                 { path: 'products', element: <ProductsPage /> },
                 { path: 'blog', element: <BlogPage /> },
+                { path: 'manage-admin', element: <ManageAdmin /> },
+                { path: 'addproduct', element: <AddProduct /> },
+                {
+                  path: 'chart',
+                  element: <LineChart/>,
+                },
               ],
             },
           ]
