@@ -16,7 +16,7 @@ import ManageAdmin from './admin/pages/ManageAdmin';
 import Homepage from './pages/homepage/Homepage';
 import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
-
+import UpdateProduct from './admin/pages/updateProduct';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -47,23 +47,24 @@ export default function Router() {
       },
       ...(isAdmin
         ? [
-            {
-              path: '/dashboard',
-              element: <DashboardLayout />,
-              children: [
-                { path: 'app', element: <DashboardAppPage /> },
-                { path: 'user', element: <UserPage /> },
-                { path: 'products', element: <ProductsPage /> },
-                { path: 'blog', element: <BlogPage /> },
-                { path: 'manage-admin', element: <ManageAdmin /> },
-                { path: 'addproduct', element: <AddProduct /> },
-                {
-                  path: 'chart',
-                  element: <LineChart/>,
-                },
-              ],
-            },
-          ]
+          {
+            path: '/dashboard',
+            element: <DashboardLayout />,
+            children: [
+              { path: 'app', element: <DashboardAppPage /> },
+              { path: 'user', element: <UserPage /> },
+              { path: 'products', element: <ProductsPage /> },
+              { path: 'blog', element: <BlogPage /> },
+              { path: 'manage-admin', element: <ManageAdmin /> },
+              { path: 'addproduct', element: <AddProduct /> },
+              { path: 'updateproduct', element: <UpdateProduct /> },
+              {
+                path: 'chart',
+                element: <LineChart />,
+              },
+            ],
+          },
+        ]
         : []),
     ]);
   }, [isAdmin]);

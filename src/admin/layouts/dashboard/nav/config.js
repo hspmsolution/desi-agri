@@ -27,6 +27,11 @@ const navConfig = [
     icon: icon('ic_cart'),
   },
   {
+    title: 'update product',
+    path: '/dashboard/updateproduct',
+    icon: icon('ic_cart'),
+  },
+  {
     title: 'Chart',
     path: '/dashboard/chart',
     icon: icon('ic_analytics'),
@@ -36,6 +41,7 @@ const navConfig = [
     path: '/dashboard/blog',
     icon: icon('ic_blog'),
   },
+
   {
     title: 'Manage Admin',
     path: '/dashboard/manage-admin',
