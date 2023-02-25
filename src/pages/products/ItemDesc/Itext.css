@@ -1,0 +1,32 @@
+.chana-container{
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.wrapper{
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    
+}
+.chana-img{
+    border: 1px solid whitesmoke;
+    margin-right: 50px;
+    margin-left: 40px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px whitesmoke;
+}
+.chana-img h4{
+    text-align: center;
+}
+.chana-img img{
+    
+    width: 230px;
+    height: 230px;
+}
+#chana-text{
+    flex-basis: 800px;
+    width: 100px;
+}

@@ -1,163 +1,254 @@
-import React from 'react';
-import './Navbar.css';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import PopupMenu from './PopupMenu';
 
-const Navbar = () => {
+const drawerWidth = 240;
+const topNav = [
+  { title: "About Us", src: "/" },
+  { title: "Training & Education", src: "/" },
+  { title: "Downloads", src: "/" },
+  { title: "Media", src: "/" },
+  { title: "FAQs", src: "/" },
+  { title: "Careers", src: "/" },
+  { title: "Get In Touch", src: "/" },
+];
+
+const bottomNav = [
+  {
+    title: "MARKET DATA",
+    menuItems: [
+      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"] },
+      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"] },
+  ]},
+  { title: "PRODUCTS" },
+  { title: "MEMBERSHIP" },
+  { title: "INVESTOR SERVICES" },
+  { title: "TECHNOLOGY" },
+  { title: "REASEARCH" },
+  { title: "FPO" },
+];
+
+// function AppBarDropdown(props) {
+//   const [anchorEl, setAnchorEl] = React.useState(null);
+//   const open = Boolean(anchorEl);
+
+//   const handleClick = (event) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+
+//   const handleClose = () => {
+//     setAnchorEl(null);
+//   };
+// }
+
+function Navbar(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [dropdown, setDropdown] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <>
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Divider />
+        <List>
+          {topNav.map((item, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                {
+                  (item.menuItems) ?
+                    <PopupMenu name={item.title} menuItems={item.menuItems} /> :
+                    <ListItemText primary={item.title} />
+                }
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <List>
+          {bottomNav.map((item, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                {/* <ListItemText primary={item.title} /> */}
+                {/* <PopupMenu name={item.title} menuItems={["Governer", "Team", "About", "Chart"]} /> */}
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </>
+  );
+
+  const container = window !== undefined ? () => window().document.body : undefined;
+
+  return (
+    <Box sx={{ display: 'flex', width: '100%' }}>
+      <CssBaseline />
+      <AppBar component="nav" sx={{ backgroundColor: '#fff', py: 2 }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-around' }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ backgroundColor: '#000', mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Link to='/'><img style={{ height: '60px', maxWidth: 'none', marginRight: '30px' }} src='images/logo.png' alt="" /></Link>
+          <Box>
+            <List
+              sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
+            >
+              {topNav.map((item, index) => (
+                <Button key={index} sx={{ color: '#005a10' }}>
+                  {item.title}
+                </Button>
+              ))}
+            </List>
+            <hr style={{ color: '#000', margin: '0.2rem 0' }} />
+            <List
+              sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
+            >
+              {/*  {bottomNav.map((item, index) => (
+                <div key={index}>
+                  <button
+                    // ...
+                    aria-expanded={dropdown ? "true" : "false"}
+                    onClick={() => setDropdown((prev) => !prev)}
+                  >
+                    {items.title}{" "}
+                  </button>
+                  {item.menuItems &&
+                    item.menuItems.map((subItem, subIndex) => (
+                      <a key={subIndex} href={subItem.src}>
+                        {subItem.title}
+                      </a>
+                    ))}
+                </div>
+                    ))} */}{/*
+              {bottomNav.map((items, index) => (
+                <div key={index}>
+                {items.map((navItem, i) => (
+                <div key={i} style={{ marginLeft: '16px' }}>
+                  {navItem.menuItems ? (
+                    <PopupMenu menuItems={[navItem.menuItems]} />
+                  ) : (
+                    <Typography variant="h6">
+                      {navItem.title}
+                    </Typography>
+                  )}
+                </div>
+                ))}
+                </div>
+                  ))} */}
+              {bottomNav.map((item, index) => (
+                <Button key={index} sx={{ color: '#005a10' }}>
+                  {item.title}
+                  {/* <PopupMenu name={item.title} menuItems={item.menuItems} /> */}
+                </Button>
+              ))}
+            </List>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+    </Box>
+  );
+}
+
+Navbar.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+// export default Navbar;
+/*
+import React from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
+import { MoreVert } from '@material-ui/icons';
+import PopupMenu from './PopupMenu';
+
+const Nav = [
+  {
+    title: "MARKET DATA",
+    menuItems: {
+      subHeader: 'MARKET WATCH',
+      listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"]
+    }
+  },
+  { title: "PRODUCTS" },
+  { title: "MEMBERSHIP" },
+  { title: "INVESTOR SERVICES" },
+  { title: "TECHNOLOGY" },
+  { title: "RESEARCH" },
+  { title: "FPO" },
+];
+
+
+
+function Navbar() {
   return (
     <div>
-      <div id="header">
-        <div className="logo">
-          <a href="#">
-            <img src="./images/NCDEX-logo.png" alt="" />
-          </a>
-        </div>
-        <nav>
-          <form className="search" action="search.php">
-            <input className="q" placeholder="Search..." type="search" />
-          </form>
-          <ul>
-            <li>
-              <a href="" id="main-tag">
-                Market Data
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                Options
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                Membership
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                Clearing
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                Circulars
-              </a>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                INVESTOR SERVICES
-              </a>
-              <ul className="mega-dropdown">
-                <li className="row">
-                  <ul className="mega-col">
-                    <li>
-                      <a href="#">About</a>
-                    </li>
-                    <li>
-                      <a href="#">About</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                  </ul>
-                  <ul className="mega-col">
-                    <li>
-                      <a href="#">Help</a>
-                    </li>
-                    <li>
-                      <a href="#">Pricing</a>
-                    </li>
-                    <li>
-                      <a href="#">Team</a>
-                    </li>
-                    <li>
-                      <a href="#">Services</a>
-                    </li>
-                  </ul>
-                  <ul className="mega-col">
-                    <li>
-                      <a href="#">Coming Soon</a>
-                    </li>
-                    <li>
-                      <a href="#">404 Error</a>
-                    </li>
-                    <li>
-                      <a href="#">Search</a>
-                    </li>
-                    <li>
-                      <a href="#">Author Page</a>
-                    </li>
-                  </ul>
-                  <ul className="mega-col">
-                    <li>
-                      <a href="#">Full Width</a>
-                    </li>
-                    <li>
-                      <a href="#">Right Column</a>
-                    </li>
-                    <li>
-                      <a href="#">Left Column</a>
-                    </li>
-                    <li>
-                      <a href="#">Maintenance</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li className="dropdown">
-              <a href="" id="main-tag">
-                TECHNOLOGY
-              </a>
-              <ul>
-                <li>
-                  <a href="#">About Version</a>
-                </li>
-                <li>
-                  <a href="#">About Version</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-              </ul>
-            </li>
-            <li className="dropdown">
-              <a href="" id="main-tag">
-                Reserch
-              </a>
-              <ul>
-                <li>
-                  <a href="#">About Version</a>
-                </li>
-                <li>
-                  <a href="#">About Version</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="" id="main-tag">
-                FPO
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <AppBar position="static">
+        <Toolbar>
+          {Nav.map((navItem, index) => (
+            <div key={index} style={{ marginLeft: '16px' }}>
+              {navItem.menuItems ? (
+                <PopupMenu menuItems={[navItem.menuItems]} />
+              ) : (
+                <Typography variant="h6">
+                  {navItem.title}
+                </Typography>
+              )}
+            </div>
+          ))}
+        </Toolbar>
+      </AppBar>
+      <div style={{ padding: '16px' }}>
+        <Typography variant="h6">
+          Main Content
+        </Typography>
       </div>
     </div>
   );
-};
+}
 
+*/
 export default Navbar;

@@ -1,0 +1,22 @@
+/* .body{
+    margin:0px;
+    padding: 0px;
+} */
+#Maincontent{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#b5d378, #23a30acb);
+  
+}
+#Ename{
+  color: rgb(255, 245, 245);
+  /* margin-top: -17px; */
+  /* background-color: rgb(177, 183, 185); */
+  font-weight: 700;
+}
+#KnMore{
+  margin-top: -0px;
+  font-weight: 550;
+}

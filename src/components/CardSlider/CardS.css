@@ -1,0 +1,27 @@
+#rottt{
+    margin: 80px 40px;
+}
+
+.slick-dots {
+    position: relative;
+}
+
+#btta{
+    margin-left: 44%;
+    padding: 8px;
+    border: 2px solid rgb(0, 0, 0);
+    cursor: pointer;
+
+}
+#btta:hover{
+    background-color: rgb(238, 238, 92);
+    color: black;
+    border: 2px solid rgb(0, 0, 0);
+
+}
+@media only screen and (max-width:1000px) {
+    #but{
+        margin-left: 25%;
+        margin-top: 10px;
+    }
+}

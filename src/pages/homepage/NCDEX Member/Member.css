@@ -1,0 +1,41 @@
+.Member{
+    margin: 120px 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+
+}
+.wrap{
+    margin: 150px auto;
+    width: 70%;
+
+}
+
+.wrap > img{
+    width: 520px;
+    float: left;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    margin-right: 15px;
+
+}
+
+.textA{
+    color: #fff;
+
+}
+
+.textA h2{
+    font-size: 42px;
+
+}
+
+.textA p{
+    font-size: 16px;
+}
