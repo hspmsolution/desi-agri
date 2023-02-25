@@ -1,0 +1,25 @@
+.body{
+    margin:0px;
+    padding: 0px;
+}
+
+.slick-slide {
+    /* width: 320px !important; */
+}
+
+div .ima{
+   width: 200px;
+   height: 100px;
+   
+}
+#ce{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+}
+#CH:hover{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+}
+

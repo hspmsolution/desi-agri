@@ -1,0 +1,36 @@
+#testimonial {
+    background: #20262E;
+    padding: 10px;
+    font-family: Helvetica;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+figure::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+}
+
+figure>iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+#app {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 100vw;
+  
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  

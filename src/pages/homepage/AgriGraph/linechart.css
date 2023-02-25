@@ -1,0 +1,65 @@
+#HomeChart{
+    height: 450px;
+    min-width: 60%;
+    margin: 2rem;
+    /* width: 1173px; */
+    /* box-shadow: 5px 5px 5px 5px rgb(117, 106, 106); */
+}
+#ProductContainer{
+    margin: 50px;
+}
+
+#container{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#Hometable {
+    min-width: 25%;
+    margin: 2rem;
+}
+
+#GUA{
+    height: 150px;
+    width: 250px;
+}
+/* #Hometable{ */
+    /* box-shadow: 5px 5px 5px 5px rgb(207, 188, 188); */
+    /* width: 572px; */
+/* } */
+#TgTl{
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+#FOICH{
+    height: 43px;
+    width: 100%;
+    color: black;
+}
+
+#FOICH:hover {
+    color: white;
+}
+
+#TglButton{
+    height: 48px;
+    width: 286px;
+    /* color: rgb(255, 255, 255); */
+    font-weight: 600;
+    /* margin-left: 5px; */
+}
+#TLbutton{
+    height: 48px ;
+    width: 286px;
+    color: black;
+    font-weight: 600;
+}
+@media only screen and (max-width:1000px){
+    #container{
+        flex-direction: column;
+    }
+}

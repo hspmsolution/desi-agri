@@ -1,0 +1,134 @@
+#hnfd {
+    width: 100%;
+    display: flex;
+    margin-bottom: 90px;
+}
+
+#hnfd>div {
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapCard {
+    color: black;
+    min-width: 40%;
+    display: flex;
+    justify-content: center;
+    height: 16rem;
+    width: 15rem;
+    border: 1px solid black;
+    margin: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.wrapCard>h4 {
+    margin: 2rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.wrapCard>p {
+    /* margin: 1rem; */
+}
+
+#h11 {
+    font-weight: 800;
+}
+
+#p1 {
+    padding: 27px;
+    margin-top: 10px;
+    font-size: larger;
+    /* font-weight: 5000; */
+    color: #fff;
+    /* background-color: rgb(199, 194, 194); */
+    transition: 0.3s;
+
+}
+
+#p1:hover {
+    transition: 200ms;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100%;
+}
+
+#box1:hover {
+    background: linear-gradient(135deg,
+            #f7f9fd, rgb(255, 250, 250));
+    border: 5px solid rgba(0, 0, 0, 0.744);
+}
+
+#box1 {
+    border: 5px solid #00000000;
+    margin: 15px;
+    background-image: url(https://images.unsplash.com/photo-1640340434855-6084b1f4901c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80);
+}
+
+#h11 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#spann {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrapper {
+    padding: 5px;
+    width: 2200px;
+    width: 60%;
+    /* margin: 20px auto; */
+}
+
+#wrapper>header {
+    padding: 0 15px;
+    text-align: center;
+    font-size: 21px;
+}
+
+.cols {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 5px 0;
+
+}
+
+/* 
+.col {
+    color: rgb(255, 255, 255);
+    margin :50px;
+    flex: 1;
+    border: 1px solid black;
+    margin: 15px;
+    padding: 5px;
+    /* background-color: rgb(199, 194, 194); */
+/*
+    transition: 0.3s;
+
+}
+
+col:first-child{
+    margin-left: -10px;
+} */
+
+.hnfd-img-con {
+    width: 50%;
+}
+
+.hnfd-img {
+    max-width: none;
+    display: inline-block;
+    width: 100%;
+    object-fit: cover;
+}

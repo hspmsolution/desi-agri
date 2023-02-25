@@ -1,0 +1,38 @@
+#MainRoot{
+    margin-left: 40px;
+    margin-bottom: 40px;
+    width: 95%;
+}
+/* #bt{
+    border: 2px solid black;
+    padding: 3px 15px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 20px;
+    font-weight: 500;
+    
+}
+#bt:hover{
+    color: white;
+    background-color: #0D6EFD;
+    
+    
+}
+#but{
+    margin-left: 45%;
+    margin-top: 10px;
+} */
+#MainHead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6baf75;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 3rem;
+}
+@media only screen and (max-width:1000px) {
+    #but{
+        margin-left: 25%;
+        margin-top: 10px;
+    }
+}
