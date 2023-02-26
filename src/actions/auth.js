@@ -1,5 +1,5 @@
-import { AUTH,  CLIENT_MSG } from "../constants/actionTypes";
-import * as api from "../api";
+import { AUTH, CLIENT_MSG ,ALL_ADMINS, DELETE_ADMIN} from '../constants/actionTypes';
+import * as api from '../api';
 
 export const signin = (formData, navigate) => async (dispatch) => {
   try {
@@ -9,7 +9,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
       type: CLIENT_MSG,
       message: { info: data.successMessage, status },
     });
-    navigate("/dashboard");
+    navigate('/dashboard');
   } catch (error) {
     dispatch({
       type: CLIENT_MSG,
@@ -22,17 +22,13 @@ export const signin = (formData, navigate) => async (dispatch) => {
   }
 };
 
-export const signup = (formData, navigate) => async (dispatch) => {
+export const signup = (formData) => async (dispatch) => {
   try {
     const { data, status } = await api.signUp(formData);
     dispatch({
       type: CLIENT_MSG,
       message: { info: data.successMessage, status },
     });
-    if (data.successMessage === "Account created Successfully") {
-      dispatch({ type: AUTH, data });
-      navigate("/login");
-    }
   } catch (error) {
     dispatch({
       type: CLIENT_MSG,
@@ -45,7 +41,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
   }
 };
 
-export const resetPassword = (formData, navigate) => async (dispatch) => {
+export const resetPassword = (formData) => async (dispatch) => {
   try {
     const { data, status } = await api.resetPassword(formData);
 
@@ -62,5 +58,40 @@ export const resetPassword = (formData, navigate) => async (dispatch) => {
       },
     });
     console.log(error);
+  }
+};
+
+export const deleteAdmin = (id) => async (dispatch) => {
+  try {
+    const { data, status } = await api.deleteAdmin(id);
+    dispatch({
+      type: CLIENT_MSG,
+      message: { info: data.successMessage, status },
+    });
+    dispatch({
+      type: DELETE_ADMIN,
+      payload:id,
+    });
+  } catch (error) {
+    dispatch({
+      type: CLIENT_MSG,
+      message: {
+        info: error.response.data?.message,
+        status: error.response.status,
+      },
+    });
+    console.log(error);
+  }
+};
+
+export const getAdmins = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAdmins();
+      dispatch({
+      type: ALL_ADMINS,
+      payload:data,
+    });
+  } catch (error) {
+    console.log(error)
   }
 };

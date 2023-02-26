@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,6 +11,7 @@ import { makeStyles } from '@mui/styles';
 import TableContainer from '@mui/material/TableContainer';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AddIcon from '@mui/icons-material/Add';
+import { deleteAdmin, getAdmins } from '../../actions/auth';
 
 const useStyles = makeStyles(() => ({
   tcontainer: {
@@ -32,26 +34,20 @@ const useStyles = makeStyles(() => ({
     borderRadius: '9px',
     fontWeight: 600,
   },
-
 }));
 
 const ManageAdmin = () => {
-  const [admins, setAdmins] = useState([]);
+  const dispatch = useDispatch();
+  const admins = useSelector((state) => state.admins.allAdmin);
 
   useEffect(() => {
-    async function getadmins() {
-      const res = await fetch('http://localhost:5000/api/admin/getadmins');
-      setAdmins(await res.json());
-    }
-    getadmins();
+    dispatch(getAdmins());
   }, []);
-
-  console.log(admins);
   const classes = useStyles();
   return (
     <>
       <Box sx={{ py: 2 }}>
-        <Link to="/register">
+        <Link to="/dashboard/register">
           <Button color="primary" size="large" type="submit" variant="contained">
             <AddIcon /> Add Admin
           </Button>
@@ -98,7 +94,13 @@ const ManageAdmin = () => {
                     </TableCell>
 
                     <TableCell align="center" className={classes.table_cell} style={{ fontWeight: '500' }}>
-                      <DeleteForeverIcon />
+                      <Button
+                        onClick={() => {
+                          dispatch(deleteAdmin(user.id));
+                        }}
+                      >
+                        <DeleteForeverIcon />
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );
