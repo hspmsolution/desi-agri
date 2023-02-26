@@ -1,0 +1,47 @@
+.Flex{
+    margin-bottom: 90px;
+    padding: 0;
+}
+strong{
+    color: yellow;
+}
+.col-sec > p{
+    padding: 30px;
+    margin-top: 10px;
+    font-size: large;
+}
+
+.Wrapper{
+    width: 100%;
+    margin: 40px auto;
+}
+/* header{
+    padding: 0 15px;
+    text-align: center;
+    font-size: 21px;
+} */
+
+.cols{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 5px 0;
+
+}
+.col-sec {
+    color: white;
+    flex: 1;
+    border: 1px solid black;
+    margin: 30px 20px;
+    padding: 0px;
+    background-color: rgb(61, 57, 57);
+    transition: 0.3s;
+    text-align: center;
+    line-height: 2rem;
+}
+.col-sec > p {
+
+}
+/* col:first-child{
+    margin-left: -10px;
+} */

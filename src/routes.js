@@ -17,6 +17,8 @@ import Homepage from './pages/homepage/Homepage';
 import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
 import UpdateProduct from './admin/pages/updateProduct';
+import Products from './pages/products/Products';
+
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -29,6 +31,10 @@ export default function Router() {
       {
         path: '/',
         element: <Homepage />,
+      },
+      {
+        path: '/products',
+        element: <Products />,
       },
       {
         path: '/login',
