@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -46,6 +47,9 @@ const ManageAdmin = () => {
   const classes = useStyles();
   return (
     <>
+      <Helmet>
+        <title> Dashboard:Manage Admin | Desi-agri</title>
+      </Helmet>
       <Box sx={{ py: 2 }}>
         <Link to="/dashboard/register">
           <Button color="primary" size="large" type="submit" variant="contained">

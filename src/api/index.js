@@ -30,3 +30,7 @@ export const addProduct = (details) => API.post('/admin/addproduct', details);
 export const deleteAdmin = (id) => API.delete(`/admin/deleteadmin/${id}`);
 
 export const getAdmins = () => API.get("/admin/getadmins");
+
+export const getProducts=()=>API.get("/products/all")
+
+export const updateProduct = (details) => API.post('/admin/updateproduct', details);

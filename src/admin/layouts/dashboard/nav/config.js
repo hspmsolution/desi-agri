@@ -43,12 +43,7 @@ export default function navConfig(role){
       title: 'blog',
       path: '/dashboard/blog',
       icon: icon('ic_blog'),
-    },
-    {
-      title: 'Not found',
-      path: '/404',
-      icon: icon('ic_disabled'),
-    },
+    }
   ];
 
   if (role === 'superadmin') {

@@ -22,13 +22,16 @@ export const signin = (formData, navigate) => async (dispatch) => {
   }
 };
 
-export const signup = (formData) => async (dispatch) => {
+export const signup = (formData,navigate) => async (dispatch) => {
   try {
     const { data, status } = await api.signUp(formData);
     dispatch({
       type: CLIENT_MSG,
       message: { info: data.successMessage, status },
     });
+    if (data.successMessage === "Account created Successfully") {
+      navigate("/dashboard/manage-admin");
+    }
   } catch (error) {
     dispatch({
       type: CLIENT_MSG,

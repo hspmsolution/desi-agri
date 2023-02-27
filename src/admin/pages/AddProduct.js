@@ -2,10 +2,17 @@ import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, Card, CardActionArea } from '@mui/material';
+import { Button, Card, CardActionArea, Select, InputLabel, FormControl, MenuItem } from '@mui/material';
 import { addProduct } from '../../actions/products';
+import { CLIENT_MSG } from '../../constants/actionTypes';
 
 const productDetails = { name: '', symbol: '', category: '', description: '', image: '' };
+const categories = [
+  { id: 1, name: 'Cereals and Pulses' },
+  { id: 2, name: 'Oil and Oil seeds' },
+  { id: 3, name: 'Fibres' },
+  { id: 4, name: 'Spices' },
+];
 
 const AddProduct = () => {
   const [details, setDetails] = useState(productDetails);
@@ -23,6 +30,13 @@ const AddProduct = () => {
 
   const submitDetails = (e) => {
     e.preventDefault();
+    if (!details.name || !details.symbol || !details.description || !details.category||!details.image ) {
+      dispatch({
+        type: CLIENT_MSG,
+        message: { info: "All Fields are required"},
+      });
+      return;
+    }
     dispatch(addProduct(details));
     setDetails(productDetails);
     setFile(null);
@@ -95,15 +109,22 @@ const AddProduct = () => {
             required
             onChange={handleChange}
           />
-          <TextField
-            value={details.category}
-            name="category"
-            id="outlined-basic"
-            label="Category"
-            variant="outlined"
-            required
-            onChange={handleChange}
-          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="select-label">Select a Category</InputLabel>
+            <Select
+              labelId="select-label"
+              onChange={handleChange}
+              name="category"
+              label="Select a Category"
+              value={details.category}
+            >
+              {categories.map((category) => (
+                <MenuItem key={category.id} value={category.name}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             value={details.description}
             name="description"

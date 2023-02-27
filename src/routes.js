@@ -16,7 +16,7 @@ import ManageAdmin from './admin/pages/ManageAdmin';
 import Homepage from './pages/homepage/Homepage';
 import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
-import UpdateProduct from './admin/pages/updateProduct';
+import UpdateProduct from './admin/pages/UpdateProduct';
 import Products from './pages/products/Products';
 
 // ----------------------------------------------------------------------

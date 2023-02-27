@@ -1,4 +1,4 @@
-export const FETCH_ALL ='FETCH_ALL';
+export const FETCH_PRODUCTS ='FETCH_PRODUCTS';
 export const PLACE_ORDER = 'PLACE_ORDER';
 export const UPDATE ='UPDATE';
 export const DELETE = 'DELETE';
