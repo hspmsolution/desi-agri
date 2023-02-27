@@ -23,7 +23,7 @@ const ProductGallery = () => {
     
 
     return (
-        <>
+        <div style={{ backgroundColor: '' }}>
             <h2 className="m-5 text-center main-heading">PRODUCTS</h2>
             
             <div className="menu-tabs container">
@@ -74,7 +74,7 @@ const ProductGallery = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

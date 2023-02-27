@@ -76,11 +76,11 @@ function TestimonialSec() {
 
   return(
     <div  id='testimonial'>
-      {/* <div id='app'>
+      <div id='app'>
         {videos.map(video => (
           <Testimonial key={video.id} data={video} />
           ))}
-      </div> */}
+      </div>
     </div>
   );
 }

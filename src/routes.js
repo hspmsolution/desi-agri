@@ -18,6 +18,7 @@ import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
 import UpdateProduct from './admin/pages/UpdateProduct';
 import Products from './pages/products/Products';
+import FuturePrices from './pages/Market Data/Historical Data/Future Prices/FuturePrices';
 
 // ----------------------------------------------------------------------
 
@@ -35,6 +36,10 @@ export default function Router() {
       {
         path: '/products',
         element: <Products />,
+      },
+      {
+        path: '/futureprices',
+        element: <FuturePrices />,
       },
       {
         path: '/login',
