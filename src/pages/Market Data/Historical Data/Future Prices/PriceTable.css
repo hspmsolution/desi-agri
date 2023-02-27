@@ -1,6 +1,7 @@
 .css-kf5vx2-MuiTableCell-root, .css-pvs8g6-MuiTableCell-root, .css-atk7c4-MuiTableCell-root {
     background-color: #3a4f88;
     color: white;
+    padding: 10px;
 }
 
 .css-66mibm-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active {
@@ -8,5 +9,5 @@
 }
 
 .css-atk7c4-MuiTableCell-root {
-    padding: 16px;
+    padding: 10px;
 }

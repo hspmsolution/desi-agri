@@ -15,32 +15,21 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
 import './PriceTable.css';
+import { Autocomplete, Button, Grid, TextField } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(label, expiry, date, previous, open, high, low, close, volume, interest, value, delivery) {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    label, expiry, date, previous, open, high, low, close, volume, interest, value, delivery,
   };
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData('COTTON', '20-Feb-2024', '24-Feb-2023', 29000.00, 0.00, 0.00, 0.00, 29000.00, 0.00, 0.00, 0.00, 'Rajkot' ),
 ];
+
+const instruments = [ 'Futures', 'Futures Index', 'Options' ];
+
+const expiryDate = [ 'June-2023', 'May-2023' ]
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -79,33 +68,93 @@ const headCells = [
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Product Name',
   },
   {
-    id: 'calories',
+    id: 'expiryDate',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Expiry Date',
   },
   {
-    id: 'fat',
+    id: 'date',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Date',
   },
   {
-    id: 'carbs',
+    id: 'prevClose',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Prev. Close Price',
   },
   {
-    id: 'protein',
+    id: 'open',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Open Price',
+  },
+  {
+    id: 'high',
+    numeric: true,
+    disablePadding: false,
+    label: 'High Price',
+  },
+  {
+    id: 'low',
+    numeric: true,
+    disablePadding: false,
+    label: 'Low Price',
+  },
+  {
+    id: 'close',
+    numeric: true,
+    disablePadding: false,
+    label: 'Close Price',
+  },
+  {
+    id: 'volume',
+    numeric: true,
+    disablePadding: false,
+    label: 'Volume',
+  },
+  {
+    id: 'interest',
+    numeric: true,
+    disablePadding: false,
+    label: 'Open Interest',
+  },
+  {
+    id: 'tradeValue',
+    numeric: true,
+    disablePadding: false,
+    label: 'Traded Value',
+  },
+  {
+    id: 'deliveryCenter',
+    numeric: true,
+    disablePadding: false,
+    label: 'Delivery Center',
   },
 ];
+
+const filters = [
+  {
+    heading: 'Instrument Type',
+    options: instruments,
+    label: "select instrument type"
+  },
+  {
+    heading: 'Choose product',
+    options: rows,
+    label: "select product name"
+  },
+  {
+    heading: 'Select expiry date ',
+    options: expiryDate,
+    label: "Expiry"
+  }
+]
 
 function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
@@ -162,13 +211,13 @@ function EnhancedTableToolbar(props) {
       }}
     >
       <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Nutrition
-        </Typography>
+        sx={{ flex: '1 1 100%' }}
+        variant="h6"
+        id="tableTitle"
+        component="div"
+      >
+        Nutrition
+      </Typography>
     </Toolbar>
   );
 }
@@ -204,6 +253,36 @@ export default function PriceTable() {
 
   return (
     <Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              p: 2,
+              bgcolor: 'background.default',
+              display: 'grid',
+              gridTemplateColumns: { md: '4fr 4fr 4fr' },
+              gap: 2,
+            }}
+          >
+            {filters.map((filter) => (
+              <Box>
+                <Typography variant="h6" gutterBottom>
+                  {filter.heading}
+                </Typography>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={filter.options}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => <TextField {...params} label={filter.label} />}
+                />
+              </Box>
+            ))}
+            <Button variant="contained" sx={{ width: '10rem' }}>Show</Button>
+          </Box>
+        </Grid>
+      </Grid>
+
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar />
         <TableContainer>
@@ -228,7 +307,7 @@ export default function PriceTable() {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.label}
                     >
                       <TableCell
                         sx={{ padding: '16px' }}
@@ -237,12 +316,19 @@ export default function PriceTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.label}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.expiry}</TableCell>
+                      <TableCell align="right">{row.date}</TableCell>
+                      <TableCell align="right">{row.previous}</TableCell>
+                      <TableCell align="right">{row.open}</TableCell>
+                      <TableCell align="right">{row.high}</TableCell>
+                      <TableCell align="right">{row.low}</TableCell>
+                      <TableCell align="right">{row.close}</TableCell>
+                      <TableCell align="right">{row.volume}</TableCell>
+                      <TableCell align="right">{row.interest}</TableCell>
+                      <TableCell align="right">{row.value}</TableCell>
+                      <TableCell align="right">{row.delivery}</TableCell>
                     </TableRow>
                   );
                 })}
