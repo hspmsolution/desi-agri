@@ -1,11 +1,11 @@
-/*
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { MenuItem } from "@mui/material";
+import { Divider, FormControl, InputLabel, ListSubheader, MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useNavigate } from "react-router-dom";
 import { toLower } from "lodash";
+import './Popup.css';
 
 // tooltip function to show menu item on hover and on click
 
@@ -21,7 +21,7 @@ const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: "#fff",
     color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 220,
+    maxWidth: 320,
     fontSize: theme.typography.pxToRem(12),
     border: "1px solid #dadde9",
     borderRadius: "8px",
@@ -30,8 +30,28 @@ const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
 }));
 
 // mapping popup menu items
-const PopupMenu = ({ name, menuItems }) => {
+const PopupMenu = ({ title, menuItems }) => {
   const navigate = useNavigate();
+
+  const DropDown = ({ dropItems }) => {
+    return (
+      <>
+        {dropItems.map((item, index) => (
+          <React.Fragment key={index}>
+            <Typography variant="overline" gutterBottom>
+              {item.subHeader}
+            </Typography>
+            {item.listItems.map((headList, i) => (
+              <>
+                <MenuItems item={headList} key={i} />
+              </>
+            ))}
+            <Divider />
+          </React.Fragment>
+        ))}
+      </>
+    )
+  }
 
   const MenuItems = ({ item }) => (
     <MenuItem onClick={() => navigate(`/${toLower(item)}`)}>{item}</MenuItem>
@@ -40,24 +60,24 @@ const PopupMenu = ({ name, menuItems }) => {
   const MenuList = 9
 
   return (
-    <div>
-      <HtmlTooltip
+    <>
+      {menuItems ? (
+        <HtmlTooltip
 
-        title={menuItems.listItems.map((item) => (
-          <MenuItems key={item} item={item} />
-        ))}
-      >
-        <div id="buttonTouchRipple" >
-          {name}
-          <KeyboardArrowDown style={{ marginLeft: '8px' }} />
-        </div>
-      </HtmlTooltip>
-    </div>
+          title={<DropDown dropItems={menuItems} />}
+        >
+          <div id="" >
+            {title}
+            {/* <KeyboardArrowDown style={{ marginLeft: '8px' }} /> */}
+          </div>
+        </HtmlTooltip>
+      ) : (<>{title}</>)}
+    </>
   );
 };
 
 export default PopupMenu;
-*//*
+/*
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { MoreVert } from '@material-ui/icons';
@@ -84,28 +104,28 @@ function PopupMenu(props) {
         color="inherit"
       >
         {/* <MoreVert /> *//* }Market Data
-      </IconButton>
-      <Menu
-        id="dropdown-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-      >
-        {props.menuItems.map((item, index) => (
-          <div key={index}>
-            {item.subHeader && <MenuItem disabled>{item.subHeader}</MenuItem>}
-            {item.listItems.map((listItem, subIndex) => (
-              <MenuItem key={`${index}-${subIndex}`} onClick={handleClose}>{listItem}</MenuItem>
-            ))}
-          </div>
-        ))}
-      </Menu>
-    </div>
-  );
+</IconButton>
+<Menu
+id="dropdown-menu"
+anchorEl={anchorEl}
+keepMounted
+open={open}
+onClose={handleClose}
+>
+{props.menuItems.map((item, index) => (
+<div key={index}>
+{item.subHeader && <MenuItem disabled>{item.subHeader}</MenuItem>}
+{item.listItems.map((listItem, subIndex) => (
+<MenuItem key={`${index}-${subIndex}`} onClick={handleClose}>{listItem}</MenuItem>
+))}
+</div>
+))}
+</Menu>
+</div>
+);
 }
 
-export default PopupMenu; */
+export default PopupMenu; *//*
 
 import * as React from "react";
 import { styled } from "@mui/material/styles";
@@ -166,4 +186,4 @@ const PopupMenu = ({ name, menuItems }) => {
   );
 };
 
-export default PopupMenu;
+export default PopupMenu; */

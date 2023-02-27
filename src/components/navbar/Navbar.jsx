@@ -12,7 +12,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import PopupMenu from './PopupMenu';
@@ -32,8 +31,14 @@ const bottomNav = [
   {
     title: "MARKET DATA",
     menuItems: [
-      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"] },
-      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"] },
+      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Live Quotes - Spot", "Heat maps", "Advance Chart", "Daily Margins", "MIS Report"] },
+      { subHeader: 'MARKET DETAILS', listItems: ["Bhav Copy", "Premium/Discount", "Physical settlement details"] },
+  ]},
+  {
+    title: "PRODUCTS",
+    menuItems: [
+      { subHeader: 'CEREALS AND PULSES', listItems: ['CHANA', 'BARLEY', 'BAJRA', 'WHEAT', 'MOONG', 'MAIZE FEED INDUSTRIAL GRADE', 'PADDY (BASMATI) - PUSA 1121'] },
+      { subHeader: 'FIBRES', listItems: ['KAPAS', '29 MM COTTON'] },
   ]},
   { title: "PRODUCTS" },
   { title: "MEMBERSHIP" },
@@ -59,7 +64,6 @@ const bottomNav = [
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [dropdown, setDropdown] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -118,7 +122,7 @@ function Navbar(props) {
               sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
             >
               {topNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#005a10' }}>
+                <Button key={index} sx={{ color: '#77b535' }}>
                   {item.title}
                 </Button>
               ))}
@@ -160,9 +164,9 @@ function Navbar(props) {
                 </div>
                   ))} */}
               {bottomNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#005a10' }}>
-                  {item.title}
-                  {/* <PopupMenu name={item.title} menuItems={item.menuItems} /> */}
+                <Button key={index} sx={{ color: '#238d36' }}>
+                  {/* {item.title} */}
+                  <PopupMenu title={item.title} menuItems={item.menuItems} />
                 </Button>
               ))}
             </List>

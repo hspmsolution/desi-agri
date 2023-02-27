@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import React, { useState } from 'react';
 import { TextField, Button, Checkbox, FormControlLabel, FormGroup, InputLabel, Select, MenuItem } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -93,6 +93,7 @@ export default function CardS() {
   };
 
   return (
+    <div className="py-5"> {/* style={{ backgroundColor: '#9381FF' }} */}
     <div id="rottt">
       {/* <h1 style={{ textAlign: "center", margin: "20px 0px" }}>
         REACT-SLICK CAROUSEL
@@ -114,6 +115,7 @@ export default function CardS() {
           return <BasicCard key={index} item={item}    />;
         })}
       </Slider>
+    </div>
     </div>
   );
 }
