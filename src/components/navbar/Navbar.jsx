@@ -39,8 +39,10 @@ const bottomNav = [
     menuItems: [
       { subHeader: 'CEREALS AND PULSES', listItems: ['CHANA', 'BARLEY', 'BAJRA', 'WHEAT', 'MOONG', 'MAIZE FEED INDUSTRIAL GRADE', 'PADDY (BASMATI) - PUSA 1121'] },
       { subHeader: 'FIBRES', listItems: ['KAPAS', '29 MM COTTON'] },
+      { subHeader: 'SPICES', listItems: ['TURMERIC', 'CORIANDER', 'JEERA'] },
+      { subHeader: 'INDEX PRODUCTS', listItems: ['GUAREX'] },
+      { subHeader: 'OIL AND OIL SEEDS', listItems: ['CASTOR SEED', 'REFINED CASTOR OIL', 'COTTON SEED OILCAKE', 'SOYBEAN', 'REFINED SOY OIL', 'MUSTARD SEED', 'CRUDE PALM OIL', 'NATURAL WHITISH SESAME SEEDS', 'HIPRO SOYBEAN MEAL'] },
   ]},
-  { title: "PRODUCTS" },
   { title: "MEMBERSHIP" },
   { title: "INVESTOR SERVICES" },
   { title: "TECHNOLOGY" },
@@ -105,7 +107,7 @@ function Navbar(props) {
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: '#fff', py: 2 }}>
+      <AppBar component="nav" sx={{ backgroundColor: '#0000007a', borderRadius: '4rem', width: '90%', left: '50%', transform: 'translate(-50%)', top: '15px' , py: 0.8 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-around' }}>
           <IconButton
             color="inherit"
@@ -122,7 +124,7 @@ function Navbar(props) {
               sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
             >
               {topNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#77b535' }}>
+                <Button key={index} sx={{ color: '#fff' }}>
                   {item.title}
                 </Button>
               ))}
@@ -164,7 +166,7 @@ function Navbar(props) {
                 </div>
                   ))} */}
               {bottomNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#238d36' }}>
+                <Button key={index} sx={{ color: '#fff' }}>
                   {/* {item.title} */}
                   <PopupMenu title={item.title} menuItems={item.menuItems} />
                 </Button>

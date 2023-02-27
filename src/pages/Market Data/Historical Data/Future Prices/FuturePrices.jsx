@@ -1,16 +1,15 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Paper, Typography } from "@mui/material";
 import react from "react";
 import PriceTable from "./PriceTable";
 import SelectInstrument from "./SelectInstrument";
 
 function FuturesPrices() {
     return (
-        <Container className="py-4">
-            <Typography variant="h6" gutterBottom>
-                Choose product
-            </Typography>
-            <SelectInstrument />
+        <Container>
+        <Paper className="py-4">
+            {/* <SelectInstrument /> */}
             <PriceTable />
+        </Paper>
         </Container>
     )
 }

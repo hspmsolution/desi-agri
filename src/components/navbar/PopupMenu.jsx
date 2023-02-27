@@ -1,7 +1,7 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { Divider, FormControl, InputLabel, ListSubheader, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Divider, FormControl, Grid, InputLabel, ListSubheader, MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import { useNavigate } from "react-router-dom";
 import { toLower } from "lodash";
@@ -11,7 +11,7 @@ import './Popup.css';
 
 const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
   <Tooltip
-    leaveTouchDelay={6000}
+    leaveTouchDelay={6000000}
     enterTouchDelay={0}
     placement={"bottom"}
     {...props}
@@ -21,7 +21,10 @@ const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: "#fff",
     color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 320,
+    maxWidth: 620,
+    height: '500px',
+    overflow: 'scroll',
+    horizontalScroll: 'none',
     fontSize: theme.typography.pxToRem(12),
     border: "1px solid #dadde9",
     borderRadius: "8px",
@@ -64,7 +67,23 @@ const PopupMenu = ({ title, menuItems }) => {
       {menuItems ? (
         <HtmlTooltip
 
-          title={<DropDown dropItems={menuItems} />}
+          title={
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  // p: 2,
+                  bgcolor: 'background.default',
+                  display: 'grid',
+                  gridTemplateColumns: { md: '1fr' },
+                  gridTemplateRows: { md: '1fr 1fr' },
+                  // gap: 2,
+                }}
+              >
+
+                <DropDown dropItems={menuItems} />
+              </Box>
+            </Grid>
+          }
         >
           <div id="" >
             {title}

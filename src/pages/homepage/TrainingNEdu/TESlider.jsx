@@ -47,7 +47,7 @@ export default function TESlider() {
   };
 
   return (
-    <div id="MainRoot" style={{ marginBottom: '120px'}}>
+    <div id="MainRoot" className="py-5">
       <h2 id="MainHead" className="my-3">TRAINING AND EDUCATION</h2>
       <Slider className="my-5" ref={slider} {...settings}>
         {TandEproducts.map((item, index) => {
