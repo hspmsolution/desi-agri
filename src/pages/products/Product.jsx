@@ -7,9 +7,8 @@ import Itext from './ItemDesc/Itext';
 import './Product.css'
 
 function Product(props) {
-    const { productCategory, productName, productDescription } = props.product;
-    console.log(productName)
-
+    const { id,category, image,name,symbol, description} = props.product;
+    
     return (
         <>
             <div className='heading-chana'>
@@ -19,23 +18,23 @@ function Product(props) {
                             <Typography color={'white'}>Home</Typography>
                         </Link>
                         <Typography color={'white'}>Products</Typography>
-                        <Typography color={'white'}>{productCategory}</Typography>
+                        <Typography color={'white'}>{category}</Typography>
                     </Breadcrumbs>
                 </div>
 
                 <div className='chana'>
-                    <h1>CHANA</h1>
+                    <h1>{name}</h1>
                 </div>
             </div>
             <div className="chana-container">
                 <div className="chanaWrapper">
                     <div className="chana-img" >
-                        <img src={`./images/${toLower(productName)}.jpg`} alt="" />
-                        <h4>{productName}</h4>
+                        <img src={image} alt="" />
+                        <h4>{name}</h4>
                     </div>
                     <div id="chana-text">
                         <p>
-                            {productDescription}
+                            {description}
                         </p>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector} from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +17,7 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import PopupMenu from './PopupMenu';
 
+
 const drawerWidth = 240;
 const topNav = [
   { title: "About Us", src: "/" },
@@ -27,28 +29,8 @@ const topNav = [
   { title: "Get In Touch", src: "/" },
 ];
 
-const bottomNav = [
-  {
-    title: "MARKET DATA",
-    menuItems: [
-      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Live Quotes - Spot", "Heat maps", "Advance Chart", "Daily Margins", "MIS Report"] },
-      { subHeader: 'MARKET DETAILS', listItems: ["Bhav Copy", "Premium/Discount", "Physical settlement details"] },
-  ]},
-  {
-    title: "PRODUCTS",
-    menuItems: [
-      { subHeader: 'CEREALS AND PULSES', listItems: ['CHANA', 'BARLEY', 'BAJRA', 'WHEAT', 'MOONG', 'MAIZE FEED INDUSTRIAL GRADE', 'PADDY (BASMATI) - PUSA 1121'] },
-      { subHeader: 'FIBRES', listItems: ['KAPAS', '29 MM COTTON'] },
-      { subHeader: 'SPICES', listItems: ['TURMERIC', 'CORIANDER', 'JEERA'] },
-      { subHeader: 'INDEX PRODUCTS', listItems: ['GUAREX'] },
-      { subHeader: 'OIL AND OIL SEEDS', listItems: ['CASTOR SEED', 'REFINED CASTOR OIL', 'COTTON SEED OILCAKE', 'SOYBEAN', 'REFINED SOY OIL', 'MUSTARD SEED', 'CRUDE PALM OIL', 'NATURAL WHITISH SESAME SEEDS', 'HIPRO SOYBEAN MEAL'] },
-  ]},
-  { title: "MEMBERSHIP" },
-  { title: "INVESTOR SERVICES" },
-  { title: "TECHNOLOGY" },
-  { title: "REASEARCH" },
-  { title: "FPO" },
-];
+
+
 
 // function AppBarDropdown(props) {
 //   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,10 +48,42 @@ const bottomNav = [
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const products=useSelector((state)=>state.products.productsDetail)
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  function getProductNamesByCategory(category) {
+    return products.filter((product) => {
+      return product.category === category;
+    }).map((product) => {
+      return product.name;
+    });
+  }
+
+  const bottomNav = [
+    {
+      title: "MARKET DATA",
+      menuItems: [
+        { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Live Quotes - Spot", "Heat maps", "Advance Chart", "Daily Margins", "MIS Report"] },
+        { subHeader: 'MARKET DETAILS', listItems: ["Bhav Copy", "Premium/Discount", "Physical settlement details"] },
+    ]},
+    {
+      title: "PRODUCTS",
+      menuItems: [
+        { subHeader: 'CEREALS AND PULSES', listItems: getProductNamesByCategory("Cereals and Pulses") },
+        { subHeader: 'FIBRES', listItems: getProductNamesByCategory("Fibres") },
+        { subHeader: 'SPICES', listItems:getProductNamesByCategory("Spices")},
+        // { subHeader: 'INDEX PRODUCTS', listItems: products.filter((product)=>{return product.category==="Cereals and Pulses"}) },
+        { subHeader: 'OIL AND OIL SEEDS', listItems:getProductNamesByCategory("Oil and Oil seeds")},
+    ]},
+    { title: "MEMBERSHIP" },
+    { title: "INVESTOR SERVICES" },
+    { title: "TECHNOLOGY" },
+    { title: "REASEARCH" },
+    { title: "FPO" },
+  ];
 
   const drawer = (
     <>

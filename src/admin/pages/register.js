@@ -12,6 +12,10 @@ import {
   FormHelperText,
   TextField,
   Typography,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
   Link as MuiLink,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -32,11 +36,13 @@ const Register = () => {
       confirmPassword: '',
       otp: '',
       policy: false,
+      role: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
       firstName: Yup.string().max(255).required('First name is required'),
       lastName: Yup.string().max(255).required('Last name is required'),
+      role: Yup.string().max(255).required('Admin Role is required'),
       password: Yup.string().max(255).required('Password is required'),
       confirmPassword: Yup.string().max(255).required('confirmPassword is required'),
       otp: Yup.string().when('condition', {
@@ -49,7 +55,6 @@ const Register = () => {
       setTimeout(() => {
         dispatch(signup(data, navigate));
       }, 500);
-
       setDisabled(true);
     },
   });
@@ -82,7 +87,7 @@ const Register = () => {
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
-               Add new admin
+                Add new admin
               </Typography>
               <Typography color="textSecondary" gutterBottom variant="body2">
                 Use unique email to create a new admin
@@ -128,6 +133,24 @@ const Register = () => {
               variant="outlined"
               disabled={isotp}
             />
+            <FormControl fullWidth margin="normal" disabled={isotp}>
+              <InputLabel id="admin-role-label">Admin Role</InputLabel>
+              <Select
+                labelId="admin-role-label"
+                name="role"
+                label="Admin Role"
+                value={formik.values.role}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={Boolean(formik.touched.role && formik.errors.role)}
+                helperText={formik.touched.role && formik.errors.role}
+                variant="outlined"
+              >
+                <MenuItem value={'admin'}>Admin</MenuItem>
+                <MenuItem value={'superadmin'}>Super Admin</MenuItem>
+              </Select>
+            </FormControl>
+
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
               fullWidth
@@ -193,7 +216,7 @@ const Register = () => {
             )}
             <Box sx={{ py: 2 }}>
               <Button color="primary" disabled={disabled} fullWidth size="large" type="submit" variant="contained">
-               Add Admin
+                Add Admin
               </Button>
             </Box>
             {/* <Typography color="textSecondary" variant="body2">

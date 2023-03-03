@@ -16,7 +16,7 @@ import ManageAdmin from './admin/pages/ManageAdmin';
 import Homepage from './pages/homepage/Homepage';
 import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
-import UpdateProduct from './admin/pages/updateProduct';
+import UpdateProduct from './admin/pages/UpdateProduct';
 import Products from './pages/products/Products';
 import FuturePrices from './pages/Market Data/Historical Data/Future Prices/FuturePrices';
 
@@ -24,6 +24,7 @@ import FuturePrices from './pages/Market Data/Historical Data/Future Prices/Futu
 
 export default function Router() {
   const isAdmin = useSelector((state) => state.auth.admin);
+  const role = useSelector((state) => state.auth.authData?.role);
   const [routes, setRoutes] = useState([]);
 
   useEffect(() => {
@@ -44,10 +45,7 @@ export default function Router() {
         path: '/login',
         element: <Login />,
       },
-      {
-        path: '/register',
-        element: <Register />,
-      },
+
       {
         path: '/404',
         element: <Page404 />,
@@ -58,27 +56,34 @@ export default function Router() {
       },
       ...(isAdmin
         ? [
-          {
-            path: '/dashboard',
-            element: <DashboardLayout />,
-            children: [
-              { path: 'app', element: <DashboardAppPage /> },
-              { path: 'user', element: <UserPage /> },
-              { path: 'products', element: <ProductsPage /> },
-              { path: 'blog', element: <BlogPage /> },
-              { path: 'manage-admin', element: <ManageAdmin /> },
-              { path: 'addproduct', element: <AddProduct /> },
-              { path: 'updateproduct', element: <UpdateProduct /> },
-              {
-                path: 'chart',
-                element: <LineChart />,
-              },
-            ],
-          },
-        ]
+            {
+              path: '/dashboard',
+              element: <DashboardLayout />,
+              children: [
+                { path: 'app', element: <DashboardAppPage /> },
+                { path: 'user', element: <UserPage /> },
+                { path: 'products', element: <ProductsPage /> },
+                { path: 'blog', element: <BlogPage /> },
+                {
+                  path: 'manage-admin',
+                  element: role === 'superadmin' ? <ManageAdmin /> : <Navigate to="/404" replace />,
+                },
+                { path: 'addproduct', element: <AddProduct /> },
+                { path: 'updateproduct', element: <UpdateProduct /> },
+                {
+                  path: 'register',
+                  element: role === 'superadmin' ? <Register /> : <Navigate to="/404" replace />,
+                },
+                {
+                  path: 'chart',
+                  element: <LineChart />,
+                },
+              ],
+            },
+          ]
         : []),
     ]);
-  }, [isAdmin]);
+  }, [isAdmin, role]);
 
   return useRoutes(routes);
 }

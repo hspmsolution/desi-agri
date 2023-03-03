@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 // @mui
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import { Box, Card, Link, Typography, Stack ,Button} from '@mui/material';
 import { styled } from '@mui/material/styles';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 // components
@@ -25,7 +26,7 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale,category,description} = product;
+  const { name, cover, price, colors, status, priceSale, category, description } = product;
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -48,21 +49,28 @@ export default function ShopProductCard({ product }) {
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Stack direction="row"  alignItems="center" justifyContent="space-between">
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
-            {name}
-          </Typography>
-        </Link>
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
-            {category}
-          </Typography>
-        </Link>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Link color="inherit" underline="hover">
+            <Typography variant="subtitle2" noWrap>
+              {name}
+            </Typography>
+          </Link>
+          <Link color="inherit" underline="hover">
+            <Typography variant="subtitle2" noWrap>
+              {category}
+            </Typography>
+          </Link>
         </Stack>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography>{description}</Typography>
+          <Button
+            onClick={() => {
+              // dispatch(deleteAdmin(user.id));
+            }}
+          >
+            <DeleteForeverIcon />
+          </Button>
           {/* <ColorPreview colors={colors} /> */}
           {/* <Typography variant="subtitle1">
             <Typography
