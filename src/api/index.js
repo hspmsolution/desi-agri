@@ -34,3 +34,9 @@ export const getAdmins = () => API.get("/admin/getadmins");
 export const getProducts=()=>API.get("/products/all")
 
 export const updateProduct = (details) => API.post('/admin/updateproduct', details);
+
+export const getProductInfo=(id)=>API.get(`/products?productId=${id}`)
+
+export const getLastPrice=(id)=>API.get(`/products/getlastprice?productId=${id}`)
+
+export const getLiveQuotes=()=>API.get('/products/livequotes')

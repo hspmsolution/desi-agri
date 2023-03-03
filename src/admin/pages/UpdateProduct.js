@@ -7,8 +7,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { CLIENT_MSG } from '../../constants/actionTypes';
-import { updateProduct } from '../../actions/products';
+import { CLIENT_MSG, LASTPRICE } from '../../constants/actionTypes';
+import { updateProduct, getLastPrice } from '../../actions/products';
 
 const useStyles = makeStyles((theme) => ({
   inputs: {
@@ -19,13 +19,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const initialData = { productId: '', price: '', date: dayjs(new Date()).$d, location: '' };
+const initialData = { name: '', productId: '', price: '', date: dayjs(new Date()).$d, location: '', percentChange: 0 };
 
 const UpdateProduct = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.productsDetail);
+  const lastPrice = useSelector((state) => state.products.lastPrice);
   const [productData, setProductData] = useState(initialData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!productData.productId || !productData.price || !productData.date || !productData.location) {
@@ -44,16 +46,26 @@ const UpdateProduct = () => {
     }
     dispatch(updateProduct(productData));
     setProductData(initialData);
-    console.log();
+    dispatch({ type: LASTPRICE, payload: 0 });
   };
 
   const handleChange = (e) => {
-    setProductData({
-      ...productData,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+    setProductData((prevData) => {
+      const newData = { ...prevData, [name]: value };
+      if (name === 'price') {
+        newData.percentChange = !value ? 0 : lastPrice === 0 ? 0 : (((value - lastPrice) / lastPrice) * 100).toFixed(2);
+      }
+      if (name === 'productId') {
+        const selectedProduct = products.find((product) => product.id === e.target.value);
+        if (selectedProduct) {
+          newData.name = selectedProduct.name;
+        }
+      }      
+      return newData;
     });
   };
-
+  
   const handleChangeDate = (e) => {
     setProductData({ ...productData, date: e.$d });
   };
@@ -63,12 +75,18 @@ const UpdateProduct = () => {
       <Helmet>
         <title> Dashboard: Update Products | Desi-agri</title>
       </Helmet>
+      <Button variant="contained" color="primary" onClick={handleSubmit}>
+        update product info
+      </Button>
       <form className={classes.inputs} noValidate autoComplete="off">
         <FormControl fullWidth margin="normal">
           <InputLabel id="select-label">Select a Category</InputLabel>
           <Select
             labelId="select-label"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              dispatch(getLastPrice(e.target.value));
+            }}
             name="productId"
             label="Select a Category"
             value={productData.productId}
@@ -82,17 +100,36 @@ const UpdateProduct = () => {
         </FormControl>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
-            label="Date&Time picker"
+            label="Select Date"
             value={productData.date}
             onChange={handleChangeDate}
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <TextField id="standard-basic" label="Price" name="price" value={productData.price} type={'number'} onChange={handleChange} />
-        <TextField id="standard-basic" label="Location" name="location" value={productData.location} onChange={handleChange} />
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          update product info
-        </Button>
+        <TextField
+          id="standard-basic"
+          label="Price"
+          name="price"
+          value={productData.price}
+          type={'number'}
+          onChange={handleChange}
+        />
+        <TextField id="standard-basic" label="Last Price" name="lastprice" value={lastPrice} disabled />
+        <TextField
+          id="standard-basic"
+          label="Percent Change"
+          name="percentChange"
+          value={productData.percentChange}
+          disabled
+          type={'number'}
+        />
+        <TextField
+          id="standard-basic"
+          label="Location"
+          name="location"
+          value={productData.location}
+          onChange={handleChange}
+        />
       </form>
     </>
   );

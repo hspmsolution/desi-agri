@@ -9,7 +9,7 @@ import ThemeProvider from './admin/theme';
 import ScrollToTop from './admin/components/scroll-to-top';
 import { StyledChart } from './admin/components/chart';
 import Notify from './admin/utils/Notify';
-import { getProducts } from './actions/products';
+import { getProducts,getLiveQuotes} from './actions/products';
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +17,7 @@ export default function App() {
   const dispatch=useDispatch();
   dispatch({type:ADMIN})
   dispatch(getProducts())
+  dispatch(getLiveQuotes())
   return (
     <ThemeProvider>
       <Notify/>

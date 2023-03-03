@@ -9,7 +9,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
       type: CLIENT_MSG,
       message: { info: data.successMessage, status },
     });
-    navigate('/dashboard');
+    navigate('/dashboard/app');
   } catch (error) {
     dispatch({
       type: CLIENT_MSG,

@@ -1,10 +1,15 @@
 import * as React from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import { toLower } from "lodash";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { Box, Divider, FormControl, Grid, InputLabel, ListSubheader, MenuItem, Select, Typography } from "@mui/material";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import { useNavigate } from "react-router-dom";
-import { toLower } from "lodash";
+import { getProductInfo } from "../../actions/products";
+
+import { PRODUCTPAGE_INFO } from "../../constants/actionTypes";
+
 import './Popup.css';
 
 // tooltip function to show menu item on hover and on click
@@ -35,7 +40,8 @@ const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
 // mapping popup menu items
 const PopupMenu = ({ title, menuItems }) => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const products=useSelector((state)=>state.products.productsDetail)
   const DropDown = ({ dropItems }) => {
     return (
       <>
@@ -57,7 +63,15 @@ const PopupMenu = ({ title, menuItems }) => {
   }
 
   const MenuItems = ({ item }) => (
-    <MenuItem onClick={() => navigate(`/${toLower(item)}`)}>{item}</MenuItem>
+    <MenuItem onClick={() =>{ 
+        if (title==="PRODUCTS") {
+          dispatch(getProductInfo(products.find((product)=>product.name===item).id))
+          dispatch({type:PRODUCTPAGE_INFO,name:item})
+          navigate(`/products`)
+        } else {
+          navigate(`/${toLower(item)}`)
+        }
+      }}>{item}</MenuItem>
   )
 
   const MenuList = 9
