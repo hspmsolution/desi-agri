@@ -1,9 +1,8 @@
-import Itext from './ItemDesc/Itext';
 import ProductChart from './CommoSnap/ProductChart';
 import Navbar from '../../components/navbar/Navbar';
 import InfoBox from './InfoBox/InfoBox';
 import Product from './Product';
-import Footer from '../homepage/Footer/Footer';
+import Footer from '../../components/Footer/Footer';
 
 const productDetails = [
   {

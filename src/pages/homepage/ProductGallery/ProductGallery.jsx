@@ -15,16 +15,16 @@ const ProductGallery = () => {
     }
 
     return (
-        <div style={{ backgroundColor: '' }}>
+        <div style={{ backgroundColor: '#fff' }}>
             <h2 className="m-5 text-center main-heading">PRODUCTS</h2>
             
             <div className="menu-tabs container">
-                <div className="menu-tab d-flex justify-content-around">
-                    <button className="btn btn-outline-success" onClick={() => setItems(Menu)}>All Products</button>
-                    <button className="btn btn-outline-success" onClick={() => filterItem('Cereals and Pulses')}>Cereals and Pulses</button>
-                    <button className="btn btn-outline-success" onClick={() => filterItem('Oil and Oil seeds')}>Oil and Oil seeds</button>
-                    <button className="btn btn-outline-success" onClick={() => filterItem('Fibres')}>Fibres</button>
-                    <button className="btn btn-outline-success" onClick={() => filterItem('Spices')}>Spices</button>
+                <div className="menuButtons menu-tab d-flex justify-content-around">
+                    <button className="menuButton btn btn-primary" onClick={() => setItems(Menu)}>All Products</button>
+                    <button className="menuButton btn btn-primary" onClick={() => filterItem('Cereals and Pulses')}>Cereals and Pulses</button>
+                    <button className="menuButton btn btn-primary" onClick={() => filterItem('Oil and Oil seeds')}>Oil and Oil seeds</button>
+                    <button className="menuButton btn btn-primary" onClick={() => filterItem('Fibres')}>Fibres</button>
+                    <button className="menuButton btn btn-primary" onClick={() => filterItem('Spices')}>Spices</button>
                 </div>
             </div>
 

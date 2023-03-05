@@ -6,8 +6,8 @@ import './SecNav.css'
 
 // Custom CSS
 
-const useStyles = makeStyles(() => {
-  return {
+const useStyles = makeStyles(() => (
+  {
     buttonContainer: {
       display: "flex",
       gap: "3em",
@@ -18,8 +18,8 @@ const useStyles = makeStyles(() => {
     pChange: {
       fontSize: "0.8em",
     },
-  };
-});
+  }
+));
 
 const SecNav = () => {
 
@@ -75,7 +75,7 @@ last:1620
   // tabs are used to make scrollable effect
 
   return (
-    <Box sx={{width: '100%', position: 'relative', top: '-65px' }}>
+    <Box sx={{width: '100%', position: 'relative', backgroundColor:"#fff" }}>
       <AppBar
         sx={{
           // py: 0.5,
@@ -90,7 +90,7 @@ last:1620
               : theme.palette.grey[800],
         }}
         color="secondary"
-        style={{ zIndex: 900, position: 'relative' , backgroundColor:"#ffffff",boxShadow:"none"}}
+        style={{ zIndex: 900, position: 'relative', top: '-64px', backgroundColor:"#ffffff",boxShadow:"none"}}
       >
         <Tabs
           value={false}
