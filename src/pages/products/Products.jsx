@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import Itext from './ItemDesc/Itext';
 import ProductChart from './CommoSnap/ProductChart';
 import Navbar from '../../components/navbar/Navbar';
 import InfoBox from './InfoBox/InfoBox';
@@ -31,10 +33,11 @@ const productDetails = [
 ]
 
 function Products() {
+  const productInfo=useSelector((state)=>state.products.productPage);
   return (
     <div>
       <Navbar />
-      {productDetails.map((product, index) => (
+      {productInfo.map((product, index) => (
         <Product key={index} product={product} />
       ))}
       <ProductChart />

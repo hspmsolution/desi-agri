@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { AppBar, Typography, Tabs, Divider, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Marquee from "react-fast-marquee";
@@ -24,52 +25,53 @@ const useStyles = makeStyles(() => (
 const SecNav = () => {
 
   const classes = useStyles();
+  const liveQuotes=useSelector((state)=>state.products.liveQuotes)
 
   // created array object of elements to display
-  const indices = [
-    {
-      indexname: "CASTOR SEED",
-      id: 0,
-percentChange:2.8,
-last:7070
-    },
-    {
-      indexname: "COTTON SEED OILCAKE",
-      id: 18,
-percentChange:-1.24,
-last:2706
-    },
-    {
-      indexname: "DHANIYA",
-      id: 23,
-percentChange:-1.98,
-last:7316
-    },
-    {
-      indexname: "GUAR GUM",
-      id: 25,
-percentChange:-3.56,
-last:11801
-    },
-    {
-      indexname: "GAUR SEED",
-      id: 19,
-percentChange:-2.49,
-last:5765
-    },
-    {
-      indexname: "JEERA",
-      id: 22,
-percentChange:-0.42,
-last:33170
-    },
-    {
-      indexname: "KAPAS",
-      id: 53,
-percentChange:-0.89,
-last:1620
-    },
-  ];
+//   const indices = [
+//     {
+//       indexname: "CASTOR SEED",
+//       id: 0,
+// percentChange:2.8,
+// last:7070
+//     },
+//     {
+//       indexname: "COTTON SEED OILCAKE",
+//       id: 18,
+// percentChange:-1.24,
+// last:2706
+//     },
+//     {
+//       indexname: "DHANIYA",
+//       id: 23,
+// percentChange:-1.98,
+// last:7316
+//     },
+//     {
+//       indexname: "GUAR GUM",
+//       id: 25,
+// percentChange:-3.56,
+// last:11801
+//     },
+//     {
+//       indexname: "GAUR SEED",
+//       id: 19,
+// percentChange:-2.49,
+// last:5765
+//     },
+//     {
+//       indexname: "JEERA",
+//       id: 22,
+// percentChange:-0.42,
+// last:33170
+//     },
+//     {
+//       indexname: "KAPAS",
+//       id: 53,
+// percentChange:-0.89,
+// last:1620
+//     },
+//   ];
 
   // mapping all the elements and taking data from api array on basis of id. id is their index  tion in api
   // tabs are used to make scrollable effect
@@ -100,14 +102,14 @@ last:1620
         >
           <Marquee gradient={false} pauseOnHover speed={40}>
             <div className={classes.buttonContainer}>
-              {indices.map((index) => (
+              {liveQuotes.map((index) => (
                 <div key={index.id}>
                   <Typography variant="subtitle2" color={"black"}>
-                    {index?.indexname}
+                    {index?.name}
                   </Typography>
 
                   <Typography color={"black"}>
-                    {index?.last}&nbsp;
+                    {index?.price}&nbsp;
                     <span
                       className={classes.pChange}
                       style={{

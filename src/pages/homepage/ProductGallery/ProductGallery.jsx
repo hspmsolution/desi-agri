@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
+import { useSelector} from 'react-redux';
 import "./ProductGall.css";
-import Menu from "./menu";
+// import Menu from "./menu";
 
 const ProductGallery = () => {
 
+  
+    const Menu=useSelector((state)=>state.products.productsDetail)
+
     const [items, setItems] = useState(Menu);
-    
     const filterItem = (categItem) => {
         const updatedItems = Menu.filter((curElem) => {
             return curElem.category === categItem;
@@ -13,6 +16,11 @@ const ProductGallery = () => {
 
         setItems(updatedItems);
     }
+
+    useEffect(() => {
+      setItems(Menu)
+    }, [Menu])
+    
 
     return (
         <div style={{ backgroundColor: '#fff' }}>
@@ -36,7 +44,7 @@ const ProductGallery = () => {
                             
                             {
                                 items.map((elem) => {
-                                    const { id, name, image, description, price } = elem;
+                                    const { id, name, image, description } = elem;
 
                                     return (
                                     
