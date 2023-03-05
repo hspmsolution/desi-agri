@@ -18,12 +18,7 @@ import AddProduct from './admin/pages/AddProduct';
 import LineChart from './admin/pages/LineChart';
 import UpdateProduct from './admin/pages/UpdateProduct';
 import Products from './pages/products/Products';
-import FuturePrices from './pages/Market Data/Historical Data/Futures Prices/FuturePrices';
-import SpotPrices from './pages/Market Data/Historical Data/Spot Prices/SpotPrices';
-import AboutUs from './pages/TopNavPages/AboutUs/AboutUs';
-import Careers from './pages/TopNavPages/Careers/Careers';
-import GetInTouch from './pages/TopNavPages/GetInTouch/GetInTouch';
-import Heatmap from './pages/Market Data/Market Watch/Heatmap/Heatmap';
+import FuturePrices from './pages/Market Data/Historical Data/Future Prices/FuturePrices';
 
 // ----------------------------------------------------------------------
 
@@ -43,28 +38,8 @@ export default function Router() {
         element: <Products />,
       },
       {
-        path: '/futuresprices',
+        path: '/futureprices',
         element: <FuturePrices />,
-      },
-      {
-        path: '/spotprices',
-        element: <SpotPrices />,
-      },
-      {
-        path: '/heatmaps',
-        element: <Heatmap />,
-      },
-      {
-        path: '/aboutus',
-        element: <AboutUs />
-      },
-      {
-        path: '/careers',
-        element: <Careers />
-      },
-      {
-        path: '/getintouch',
-        element: <GetInTouch />
       },
       {
         path: '/login',

@@ -9,7 +9,7 @@ Chart.register(...registerables);
 
 const LineChart = () => {
   const [res, setres] = useState();
-  // const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
   useEffect(() => {
@@ -80,6 +80,14 @@ const LineChart = () => {
     },
   };
 
+  const columns = [
+    // { field: "id", header: "ID" },
+    { field: "contract", header: "Contract" },
+    // { field: "address", header: "Address" },
+    { field: "ltp", header: "LTP" },
+    { field: "Changes", header: "Changes(%)" },
+  ];
+
   const radios = [
     { name: 'Top Gainers', value: '1' },
     { name: 'Top Losers', value: '2' }
@@ -87,7 +95,12 @@ const LineChart = () => {
 
   return (
     <>
-        <div id="container" className="col-12">
+      <img
+        src="https://ncdex.com/public/uploads/settings/87a615f9aacd6cfaf91d3986b73f5ea4.png"
+        alt=""
+        id="GUA"
+      />
+      <div id="container" className="col-12">
         <div id="HomeChart">
           <span> Line Chart</span>
           <Line
@@ -99,9 +112,9 @@ const LineChart = () => {
               {
                 afterDraw: (chart) => {
                   if (chart.tooltip?._active?.length) {
-                    const x = chart.tooltip._active[0]?.element.x;
+                    const x = chart.tooltip._active[0].element.x;
                     const yAxis = chart.scales.y;
-                    const ctx = chart?.ctx;
+                    const ctx = chart.ctx;
                     ctx.save();
                     ctx.beginPath();
                     ctx.setLineDash([5, 7]);
@@ -116,11 +129,9 @@ const LineChart = () => {
               },
             ]}
           />
-          <div style={{ margin: 'auto' }}>
-            <RbButton variant="outline-success" id="FOICH">
-              For more details on indices click here
-            </RbButton>
-          </div>
+          <RbButton variant="outline-success" id="FOICH">
+            For more details on indices click here
+          </RbButton>
         </div>
 
         <div id="Hometable">
@@ -144,6 +155,8 @@ const LineChart = () => {
         ))}
       </ButtonGroup>
           </div>
+
+          {/* <RenderTable item1={data1} columns={columns}/> */}
           <Table />
         </div>
       </div>

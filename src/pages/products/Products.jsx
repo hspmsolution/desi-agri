@@ -4,7 +4,7 @@ import ProductChart from './CommoSnap/ProductChart';
 import Navbar from '../../components/navbar/Navbar';
 import InfoBox from './InfoBox/InfoBox';
 import Product from './Product';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../homepage/Footer/Footer';
 
 const productDetails = [
   {

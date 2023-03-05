@@ -4,19 +4,19 @@
     font-family: Helvetica;
 }
 
-.testimonialFig {
+figure {
     margin: 0;
     padding: 0;
     position: relative;
 }
 
-.testimonialFig::before {
+figure::before {
     content: "";
     display: block;
     padding-top: 56.25%;
 }
 
-.testimonialFig > iframe {
+figure>iframe {
     position: absolute;
     left: 0;
     top: 0;

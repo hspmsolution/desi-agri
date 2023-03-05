@@ -2,6 +2,8 @@ import { Breadcrumbs, Typography } from '@mui/material';
 import { toLower } from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Itext from './ItemDesc/Itext';
+// import BreadCrumb from './ProHeader/Breadcrumb';
 import './Product.css'
 
 function Product(props) {

@@ -5,11 +5,13 @@ function Gannounce() {
   return (
     <>
       <div className="Gannounce">
+        {/* <h2>GOVERNMENT ANNOUNCEMENTS</h2> */}
 
         <div className="img-text-side-by-side img-box">
           <div className="img-container"> </div>
           <div className="text-container">
             <h2>GOVERNMENT ANNOUNCEMENTS</h2>
+            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium sapiente vero animi delectus doloremque! Ex vero provident deserunt nulla adipisci. Laudantium porro eaque esse accusantium praesentium amet quaerat quam maiores.</p> */}
             <ul>
               <li className="dateHeading">11 Jan 2023</li>
               <li>
@@ -52,7 +54,7 @@ function Gannounce() {
                 oilseeds (DFPD Order No. 4870)</a>
               </li>
 
-              <button type="button" className="menuButton btn btn-primary my-3">
+              <button type="button" className="btn btn-outline-success my-3">
                 View More
               </button>
             </ul>

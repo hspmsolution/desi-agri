@@ -32,6 +32,7 @@ const Testimonial = (props) => {
     const firstScriptTag = document.querySelector('script');
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     window.onYouTubeIframeAPIReady = () => {
+      // console.log('YouTube API Ready');  
       createPlayer();
     };
   }, []);
@@ -46,7 +47,7 @@ const Testimonial = (props) => {
 
   return (
     <div>
-    <figure className='testimonialFig'>
+    <figure>
       <iframe
         title="Testimonial Video"
         ref={iframeRef}
