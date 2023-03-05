@@ -14,7 +14,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toLower } from 'lodash';
 import PopupMenu from './PopupMenu';
 
 
@@ -29,21 +30,29 @@ const topNav = [
   { title: "Get In Touch", src: "/" },
 ];
 
-
-
-
-// function AppBarDropdown(props) {
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const open = Boolean(anchorEl);
-
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-// }
+const bottomNav = [
+  {
+    title: "MARKET DATA",
+    menuItems: [
+      { subHeader: 'MARKET WATCH', listItems: ["Live Quotes", "Live Quotes - Spot", "Heat maps", "Advance Chart", "Daily Margins", "MIS Report"] },
+      { subHeader: 'MARKET DETAILS', listItems: ["Bhav Copy", "Premium/Discount", "Physical settlement details"] },
+      { subHeader: 'HISTORICAL DATA', listItems: ["Futures Prices", "Spot Prices", "Volume Details", "Reports on Historical Data"] },
+  ]},
+  {
+    title: "PRODUCTS",
+    menuItems: [
+      { subHeader: 'CEREALS AND PULSES', listItems: ['CHANA', 'BARLEY', 'BAJRA', 'WHEAT', 'MOONG', 'MAIZE FEED INDUSTRIAL GRADE', 'PADDY (BASMATI) - PUSA 1121'] },
+      { subHeader: 'FIBRES', listItems: ['KAPAS', '29 MM COTTON'] },
+      { subHeader: 'SPICES', listItems: ['TURMERIC', 'CORIANDER', 'JEERA'] },
+      { subHeader: 'INDEX PRODUCTS', listItems: ['GUAREX'] },
+      { subHeader: 'OIL AND OIL SEEDS', listItems: ['CASTOR SEED', 'REFINED CASTOR OIL', 'COTTON SEED OILCAKE', 'SOYBEAN', 'REFINED SOY OIL', 'MUSTARD SEED', 'CRUDE PALM OIL', 'NATURAL WHITISH SESAME SEEDS', 'HIPRO SOYBEAN MEAL'] },
+  ]},
+  { title: "MEMBERSHIP" },
+  { title: "INVESTOR SERVICES" },
+  { title: "TECHNOLOGY" },
+  { title: "REASEARCH" },
+  { title: "FPO" },
+];
 
 function Navbar(props) {
   const { window } = props;
@@ -106,8 +115,7 @@ function Navbar(props) {
           {bottomNav.map((item, index) => (
             <ListItem key={index} disablePadding>
               <ListItemButton sx={{ textAlign: 'center' }}>
-                {/* <ListItemText primary={item.title} /> */}
-                {/* <PopupMenu name={item.title} menuItems={["Governer", "Team", "About", "Chart"]} /> */}
+                <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -117,70 +125,41 @@ function Navbar(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  const navigate = useNavigate();
+
 
   return (
+    <>
     <Box sx={{ display: 'flex', width: '100%' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: '#0000007a', borderRadius: '4rem', width: '90%', left: '50%', transform: 'translate(-50%)', top: '15px' , py: 0.8 }}>
+      <AppBar component="nav" sx={{ backgroundColor: '#fff', py: 0.8 }}> { /*  width: '90%', left: '50%', transform: 'translate(-50%)', top: '15px' , */ }
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-around' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ backgroundColor: '#000', mr: 2, display: { sm: 'none' } }}
+            sx={{ backgroundColor: '#000', mr: 2, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
           <Link to='/'><img style={{ height: '60px', maxWidth: 'none', marginRight: '30px' }} src='images/logo.png' alt="" /></Link>
           <Box>
             <List
-              sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
+              sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
             >
               {topNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#fff' }}>
+                <Button key={index} sx={{ color: '#000' }} onClick={() => navigate(`/${toLower((item.title).replaceAll(' ', ''))}`)}>
                   {item.title}
                 </Button>
               ))}
             </List>
             <hr style={{ color: '#000', margin: '0.2rem 0' }} />
             <List
-              sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
+              sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'space-evenly', padding: '0' }}
             >
-              {/*  {bottomNav.map((item, index) => (
-                <div key={index}>
-                  <button
-                    // ...
-                    aria-expanded={dropdown ? "true" : "false"}
-                    onClick={() => setDropdown((prev) => !prev)}
-                  >
-                    {items.title}{" "}
-                  </button>
-                  {item.menuItems &&
-                    item.menuItems.map((subItem, subIndex) => (
-                      <a key={subIndex} href={subItem.src}>
-                        {subItem.title}
-                      </a>
-                    ))}
-                </div>
-                    ))} */}{/*
-              {bottomNav.map((items, index) => (
-                <div key={index}>
-                {items.map((navItem, i) => (
-                <div key={i} style={{ marginLeft: '16px' }}>
-                  {navItem.menuItems ? (
-                    <PopupMenu menuItems={[navItem.menuItems]} />
-                  ) : (
-                    <Typography variant="h6">
-                      {navItem.title}
-                    </Typography>
-                  )}
-                </div>
-                ))}
-                </div>
-                  ))} */}
               {bottomNav.map((item, index) => (
-                <Button key={index} sx={{ color: '#fff' }}>
+                <Button key={index} sx={{ color: '#000' }}>
                   {/* {item.title} */}
                   <PopupMenu title={item.title} menuItems={item.menuItems} />
                 </Button>
@@ -189,6 +168,7 @@ function Navbar(props) {
           </Box>
         </Toolbar>
       </AppBar>
+      
       <Box component="nav">
         <Drawer
           container={container}
@@ -199,7 +179,7 @@ function Navbar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { sm: 'block', md: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
@@ -207,68 +187,12 @@ function Navbar(props) {
         </Drawer>
       </Box>
     </Box>
+    </>
   );
 }
 
 Navbar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
-// export default Navbar;
-/*
-import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { MoreVert } from '@material-ui/icons';
-import PopupMenu from './PopupMenu';
-
-const Nav = [
-  {
-    title: "MARKET DATA",
-    menuItems: {
-      subHeader: 'MARKET WATCH',
-      listItems: ["Live Quotes", "Heat maps", "MIS Report", "Chart"]
-    }
-  },
-  { title: "PRODUCTS" },
-  { title: "MEMBERSHIP" },
-  { title: "INVESTOR SERVICES" },
-  { title: "TECHNOLOGY" },
-  { title: "RESEARCH" },
-  { title: "FPO" },
-];
-
-
-
-function Navbar() {
-  return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          {Nav.map((navItem, index) => (
-            <div key={index} style={{ marginLeft: '16px' }}>
-              {navItem.menuItems ? (
-                <PopupMenu menuItems={[navItem.menuItems]} />
-              ) : (
-                <Typography variant="h6">
-                  {navItem.title}
-                </Typography>
-              )}
-            </div>
-          ))}
-        </Toolbar>
-      </AppBar>
-      <div style={{ padding: '16px' }}>
-        <Typography variant="h6">
-          Main Content
-        </Typography>
-      </div>
-    </div>
-  );
-}
-
-*/
 export default Navbar;

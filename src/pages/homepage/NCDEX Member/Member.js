@@ -19,7 +19,7 @@ function Member() {
             <br />
           </p>
 
-          <button type="button" className="btn btn-outline-success m-3">
+          <button type="button" className="menuButton btn btn-primary m-3">
             Become a member
           </button>
         </div>

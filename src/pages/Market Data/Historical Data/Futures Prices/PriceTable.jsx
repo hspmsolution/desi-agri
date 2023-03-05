@@ -12,7 +12,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 import { visuallyHidden } from '@mui/utils';
 import './PriceTable.css';
 import { Autocomplete, Button, Grid, TextField } from '@mui/material';
@@ -157,7 +156,7 @@ const filters = [
 ]
 
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+  const { order, orderBy, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -193,15 +192,12 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
 };
 
-function EnhancedTableToolbar(props) {
+function EnhancedTableToolbar() {
 
   return (
     <Toolbar
@@ -222,9 +218,6 @@ function EnhancedTableToolbar(props) {
   );
 }
 
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
 
 export default function PriceTable() {
   const [order, setOrder] = React.useState('asc');
@@ -264,8 +257,8 @@ export default function PriceTable() {
               gap: 2,
             }}
           >
-            {filters.map((filter) => (
-              <Box>
+            {filters.map((filter, index) => (
+              <Box key={index}>
                 <Typography variant="h6" gutterBottom>
                   {filter.heading}
                 </Typography>

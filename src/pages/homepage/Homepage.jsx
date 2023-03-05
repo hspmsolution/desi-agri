@@ -10,7 +10,7 @@ import HNFD from './HNFD/HNFD';
 import Gannounce from './Gannounce/Gannounce';
 import Member from './NCDEX Member/Member';
 import Flex from './NCDEX Impact/Flex';
-import Footer from './Footer/Footer';
+import Footer from '../../components/Footer/Footer';
 import { TestimonialSec } from './Testimonial/Testimonial';
 
 function Homepage() {

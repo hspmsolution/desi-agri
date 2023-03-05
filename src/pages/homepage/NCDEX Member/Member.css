@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.menuButton {
+  --bs-btn-bg: #4E598C;
+  --bs-btn-border-color: #4E598C;
+  --bs-btn-hover-bg: #3d466e;
+  --bs-btn-hover-border-color: #3d466e;
+  --bs-btn-active-bg: #2e3555;
+}
+
 .body{
     display: flex;
     justify-content: center;

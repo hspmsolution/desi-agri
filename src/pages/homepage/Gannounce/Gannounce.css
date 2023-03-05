@@ -10,11 +10,17 @@
 
   .text-container h2{
     text-align: center;
-    color: #6baf75;
     font-family: 'Alegreya Sans SC', sans-serif;
     font-size: 3rem;
   }
 
+  .menuButton {
+    --bs-btn-bg: #4E598C;
+    --bs-btn-border-color: #4E598C;
+    --bs-btn-hover-bg: #3d466e;
+    --bs-btn-hover-border-color: #3d466e;
+    --bs-btn-active-bg: #2e3555;
+  }
 
   .content {
     padding: 50px;
@@ -32,7 +38,6 @@
   }
   
   .img-as-bg-container {
-    background-color: green;
     border-radius: 6px;
     background-image: url("https://picsum.photos/id/1079/1280/720/?blur=2");
     background-position: center;
@@ -70,7 +75,6 @@
 
   .dateHeading {
     font-weight: 600;
-    color: #005a11c3;
     margin: 1rem 0;
   }
   
