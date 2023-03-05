@@ -2,19 +2,9 @@
 #tsi{
     height: 450px;
     width: 100%;
-    border-radius: 20px;
 }
-
-.gainersHeadRow > .MuiTableCell-head {
-    background-color: #363e62;
-}
-.gainersHeadRow > .MuiTableCell-head, .gainersBodyRow > .MuiTableCell-body {
-    padding: 1.5rem 2rem;
-}
-
-.gainersBody > .css-1fkjbqq-MuiTableRow-root:nth-of-type(odd) {
-    background-color: #ffffff;
-}
-.gainersBody > .css-1fkjbqq-MuiTableRow-root {
-    background-color: #f2f3f9;
-}
+/* #TGL{
+    width: 360px;
+    margin-left: 5px;
+    font-weight: 600;
+} */
