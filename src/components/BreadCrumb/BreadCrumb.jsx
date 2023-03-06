@@ -12,3 +12,5 @@ function BreadCrumb() {
         </Breadcrumbs>
     )
 }
+
+export default BreadCrumb;

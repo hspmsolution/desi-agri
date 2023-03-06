@@ -4,17 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { toLower } from "lodash";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { Box, Divider, FormControl, Grid, InputLabel, ListSubheader, MenuItem, Select, Typography } from "@mui/material";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import { Box, Divider, Grid, MenuItem, Typography } from "@mui/material";
+import PropTypes from 'prop-types';
 import { getProductInfo } from "../../actions/products";
-
 import { PRODUCTPAGE_INFO } from "../../constants/actionTypes";
-
 import './Popup.css';
 
 // tooltip function to show menu item on hover and on click
 
-const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
+const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip
     leaveTouchDelay={6000000}
     enterTouchDelay={0}
@@ -42,8 +40,7 @@ const PopupMenu = ({ title, menuItems }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products=useSelector((state)=>state.products.productsDetail)
-  const DropDown = ({ dropItems }) => {
-    return (
+  const DropDown = ({ dropItems }) => (
       <>
         {dropItems.map((item, index) => (
           <React.Fragment key={index}>
@@ -60,7 +57,9 @@ const PopupMenu = ({ title, menuItems }) => {
         ))}
       </>
     )
-  }
+    DropDown.propTypes = {
+      dropItems: PropTypes.array
+    }
 
   const MenuItems = ({ item }) => (
     <MenuItem onClick={() =>{ 
@@ -74,7 +73,9 @@ const PopupMenu = ({ title, menuItems }) => {
       }}>{item}</MenuItem>
   )
 
-  const MenuList = 9
+  MenuItems.propTypes = {
+    item: PropTypes.object
+  }
 
   return (
     <>
@@ -101,7 +102,6 @@ const PopupMenu = ({ title, menuItems }) => {
         >
           <div id="" >
             {title}
-            {/* <KeyboardArrowDown style={{ marginLeft: '8px' }} /> */}
           </div>
         </HtmlTooltip>
       ) : (<>{title}</>)}
@@ -109,114 +109,9 @@ const PopupMenu = ({ title, menuItems }) => {
   );
 };
 
-export default PopupMenu;
-/*
-import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { MoreVert } from '@material-ui/icons';
-
-function PopupMenu(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <div>
-      <IconButton
-        aria-label="more"
-        aria-controls="dropdown-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-        color="inherit"
-      >
-        {/* <MoreVert /> *//* }Market Data
-</IconButton>
-<Menu
-id="dropdown-menu"
-anchorEl={anchorEl}
-keepMounted
-open={open}
-onClose={handleClose}
->
-{props.menuItems.map((item, index) => (
-<div key={index}>
-{item.subHeader && <MenuItem disabled>{item.subHeader}</MenuItem>}
-{item.listItems.map((listItem, subIndex) => (
-<MenuItem key={`${index}-${subIndex}`} onClick={handleClose}>{listItem}</MenuItem>
-))}
-</div>
-))}
-</Menu>
-</div>
-);
+PopupMenu.propTypes = {
+  title: PropTypes.string,
+  menuItems: PropTypes.array
 }
 
-export default PopupMenu; *//*
-
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { MenuItem } from "@mui/material";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-// import { useStateContext } from "../../Contexts/ContextProvider";
-
-// tooltip function to show menu item on hover and on click
-
-const HtmlTooltip = styled(({ className, isMatch, ...props }) => (
-  <Tooltip
-    leaveTouchDelay={6000}
-    enterTouchDelay={0}
-    placement={isMatch ? "right-start" : "bottom"}
-    {...props}
-    classes={{ popper: className }}
-  />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#fff",
-    color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: "1px solid #dadde9",
-    borderRadius:"8px",
-    boxShadow:"rgb(0 0 0 / 28%) 0px 0px 13px 0px"
-  },
-}));
-
-// mapping popup menu items
-const PopupMenu = ({ name, menuItems }) => {
-  // const { isMatch } = useStateContext();
-  
-  return (
-     
-
-    <div>
-      <HtmlTooltip
-        // isMatch={isMatch}
-         
-        title={menuItems.map((items) => (
-         
-          <MenuItem key={items}>{items}</MenuItem>
-        ))}
-      >
-        <Button
-          endIcon={<KeyboardArrowDown />}
-          fullWidth
-         
-          style={{fontSize:"1em",textTransform: 'none',color:"black"}}
-        >
-          {name}
-        </Button>
-      </HtmlTooltip>
-    </div>
-  );
-};
-
-export default PopupMenu; */
+export default PopupMenu;

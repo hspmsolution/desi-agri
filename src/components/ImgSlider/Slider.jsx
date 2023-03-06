@@ -2,20 +2,13 @@ import React from 'react';
 import ImageSlider, { Slide } from 'react-auto-image-slider';
 import './Slider.css';
 
-const Slider = () => {
-  return (
+const Slider = () =>
+ (
     <ImageSlider effectDelay={500} autoPlayDelay={2000}>
-      {/* <Slide>
-        <img alt="img1" src={'https://ncdex.com/downloads/Media/Saarthi-Mobile-app_20220407-banner.jpg'} />
-      </Slide> */}
       <Slide>
-        <img alt="img1" src={'https://ncdex.com/downloads/Media/PeopleFirst-HR-Excellence-Awards_20220819.jpg'} />
-      </Slide>
-      <Slide>
-        <img alt="img1" src={'https://ncdex.com/downloads/Media/PeopleFirst-HR-Excellence-Awards_20220819.jpg'} />
+        <img alt="img1" src={'https://ied.eu/wp-content/uploads/2018/05/agriculture-economy.png'} />
       </Slide>
     </ImageSlider>
   )
-}
 
 export default Slider;
