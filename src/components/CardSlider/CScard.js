@@ -1,5 +1,5 @@
-// import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import PropTypes from 'prop-types'
 import "./CScard.css"
 
 function BasicCard({item}) {
@@ -16,13 +16,6 @@ function BasicCard({item}) {
       }}
     >
       <Card.Img variant="top" src={item.image} />
-      {/* <Card.Body>
-        <Card.Title id="ce"> {item.id}</Card.Title>
-        {/* <Card.Text>
-          Some quick example text to build on the card title and make up the...
-        </Card.Text> */}
-        {/* <Button variant="primary" id="ce">Go somewhere</Button> */}
-      {/* </Card.Body> */}
     </Card>
     </div>
 
@@ -30,4 +23,9 @@ function BasicCard({item}) {
      </>
   );
 }
+
+BasicCard.propTypes = {
+  item: PropTypes.object
+}
+
 export default BasicCard;

@@ -1,34 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-// import Slider from "react-slick";
 import "./CardS.css";
 import BasicCard from "./CScard";
-
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block"  }}
-      // onClick={onClick}
-    >
-      NEXT
-    </div>
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      // onClick={onClick}
-    >
-      BACK
-    </div>
-  );
-}
 
 export default function CardS() {
   const slider = React.useRef(null);
@@ -43,10 +16,6 @@ export default function CardS() {
     autoplay: true,
       speed: 2000,
       autoplaySpeed: 2000,
-
-    // customPaging: function (i) {
-    //   return <p>{i + 1}</p>;
-    // },
 
     responsive: [
       {
@@ -87,33 +56,15 @@ export default function CardS() {
         },
       },
     ],
-
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
   };
 
   return (
-    <div className="py-5"> {/* style={{ backgroundColor: '#9381FF' }} */}
+    <div className="py-5">
     <div id="rottt">
-      {/* <h1 style={{ textAlign: "center", margin: "20px 0px" }}>
-        REACT-SLICK CAROUSEL
-      </h1> */}
-
-      {/* <div style={{ margin: 20 }}>
-        <button onClick={() => slider?.current?.slickPrev()} id="btta">Prev</button>
-        <button
-          style={{ marginLeft: 20 }}
-          onClick={() => slider?.current?.slickNext()}
-          id="btta"
-        >
-          Next
-        </button>
-      </div> */}
-
       <Slider ref={slider} {...settings}>
-        {products?.map((item, index, image) => {
-          return <BasicCard key={index} item={item}    />;
-        })}
+        {products?.map((item, index) => (
+          <BasicCard key={index} item={item} />
+        ))}
       </Slider>
     </div>
     </div>

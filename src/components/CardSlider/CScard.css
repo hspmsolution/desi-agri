@@ -2,11 +2,6 @@
     margin:0px;
     padding: 0px;
 }
-
-.slick-slide {
-    /* width: 320px !important; */
-}
-
 div .ima{
    width: 200px;
    height: 100px;
@@ -19,10 +14,6 @@ div .ima{
     justify-items: center;
     margin: auto;
 }
-#CH:hover{
-    /* box-shadow: 0 10px 20px rgba(0,0,0,0.8); */
-}
-
 #CH {
     margin-right: 0;
 }

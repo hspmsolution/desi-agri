@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans|Mountains+of+Christmas&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-
 .topNav {
   font-family: 'Righteous', cursive;
 }
-
 
 .nav-header {
   margin: 0;
@@ -23,7 +21,6 @@
 }
 
 .nav-header .top_nav{
-  /* margin-top: 5px; */
   width: 100%;
   height: auto;
   padding: 0 50px;
